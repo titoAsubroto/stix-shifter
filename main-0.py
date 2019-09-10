@@ -6,8 +6,6 @@ from flask import Flask
 import json
 import time
 from stix_shifter.utils.proxy_host import ProxyHost
-import logging
-import os
 
 TRANSLATE = 'translate'
 TRANSMIT = 'transmit'
@@ -41,10 +39,6 @@ def __main__():
             is_async
         >
     """
-    # Start logging based on logLevel -- for debugging purpuse -- Subroto Bhattacharya
-    logFile = "./runlogs/stix_shifter_run.log"
-    logging.basicConfig(filename=logFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    logging.info('-----------Run Started.------------')
 
     # process arguments
     parent_parser = argparse.ArgumentParser(description='stix_shifter')
@@ -66,14 +60,13 @@ def __main__():
     translate_parser.add_argument('options', nargs='?', help='Options dictionary')
     translate_parser.add_argument('recursion_limit', type=int, nargs='?', help='Maximum depth of Python interpreter stack')
 
-    logging.info('Positional Arguments.')
     # optional arguments
     translate_parser.add_argument('-x', '--stix-validator', action='store_true',
                                   help='Run the STIX 2 validator against the translated results')
     # Only supported by Elastic and Splunk
     translate_parser.add_argument('-m', '--data-mapper',
                                   help='optional module to use for Splunk or Elastic STIX-to-query mapping')
-    logging.info('Optional Arguments.')
+
     # transmit parser
     transmit_parser = parent_subparsers.add_parser(
         TRANSMIT, help='Connect to a datasource and exectue a query...')
@@ -109,7 +102,6 @@ def __main__():
     delete_operation_parser.add_argument('search_id', help='id of query to remove')
     operation_subparser.add_parser(stix_transmission.IS_ASYNC, help='Checks if the query operation is asynchronous')
 
-    logging.info('Operation subparser.')
     execute_parser = parent_subparsers.add_parser(EXECUTE, help='Translate and fully execute a query')
     # positional arguments
     execute_parser.add_argument(
@@ -154,7 +146,7 @@ def __main__():
     )
 
     args = parent_parser.parse_args()
-    print(args)
+
     if args.command is None:
         parent_parser.print_help(sys.stderr)
         sys.exit(1)
@@ -210,13 +202,9 @@ def __main__():
         app.run(debug=True, port=int(host_address[1]), host=host_address[0])
 
     elif args.command == EXECUTE:
-        rFilename = "./test_results/stix_shifter_result.log" 
-        logging.info('Executing the command: ' + args.command)
-
         # Execute means take the STIX SCO pattern as input, execute query, and return STIX as output
         translation = stix_translation.StixTranslation()
         dsl = translation.translate(args.translation_module, 'query', args.data_source, args.query)
-        print("DSL Translation returned {}".format(dsl))
         connection_dict = json.loads(args.connection)
         configuration_dict = json.loads(args.configuration)
 
@@ -225,7 +213,6 @@ def __main__():
         results = []
         for query in dsl['queries']:
             search_result = transmission.query(query)
-            print("Executed search; returned id is {}".format(search_result))
 
             if search_result["success"]:
                 search_id = search_result["search_id"]
@@ -256,122 +243,20 @@ def __main__():
 
     elif args.command == TRANSLATE:
         options = json.loads(args.options) if bool(args.options) else {}
-        logLevel = options.get("logLevel", "INFO").upper()
-        logLevel = "DEBUG"
-        #For testing it will be difficult to type in large amount data 
-        #For Guardium we are passing the search_id and then the result file will be read containing the data
-        print(logLevel)
-        if(logLevel == "DEBUG"):
-            (logging.getLogger()).setLevel(logging.DEBUG)
-        elif(logLevel == "WARNING"):
-            (logging.getLogger()).setLevel(logging.WARNING)
-
-        searchId = options.get("search_id", -999)
-        if(searchId != -999):
-            #read the file and get datasource and data
-            jRes = readResultFile(searchId)
-            if(jRes != None):
-                content = jRes["content"]
-                args.data_source = json.dumps(content["data_source"])
-                args.data = json.dumps(content["data"])
-        print("print----- data")
-        print(args.data)
-
-        #print("print----- TRANSLATE - 1")
-        (logging.getLogger()).setLevel(logging.DEBUG)
-        logging.debug("Command = TRANSLATE:")
-        options = json.loads(args.options) if bool(args.options) else {}
         if args.stix_validator:
             options['stix_validator'] = args.stix_validator
         if args.data_mapper:
             options['data_mapper'] = args.data_mapper
         recursion_limit = args.recursion_limit if args.recursion_limit else 1000
-        #print("print----- TRANSLATE - 2")
-        logging.debug("Options: " + str(options))
-        #print("print----- TRANSLATE - 3")
         translation = stix_translation.StixTranslation()
-        #print("print----- TRANSLATE - 4")
         result = translation.translate(
             args.module, args.translate_type, args.data_source, args.data, options=options, recursion_limit=recursion_limit)
-# Print Output for Translate
-        print("\n-------- " + str(args.command) + " Output for " + args.translate_type + " ----------\n")
-        print("args passed: ")
-        print(args)
-        print("\n---> Results Obtained: ")
-        if(args.translate_type == "query"):
-            print("\nQuery Data: ")
-            #print(str(result["queries"]))
-            print(result)
-        else:
-            print("\nStix Bundle Data: ")
-            print(result)
-        # log result Output
-        with open(rFilename, 'a+') as rFile:
-            rFile.write("\n\n New test RUN --------> " + str(args.command) + " Output for " + args.translate_type + " -----------\n")
-            rFile.write("args passed: \n")
-            rFile.write(str(args))
-            if(args.translate_type == "query"):
-                rFile.write("\n\n---------Results Obtained: \nQuery Data: ")
-                rFile.write(str(result).replace("'", '"'))
-                #rFile.write(str(result["queries"]).replace("'", '"'))
-                #rFile.write("\nparsed_stix: ")
-                #rFile.write(json.dumps(result["parsed_stix"],indent=4))
-            else:
-                rFile.write("\n---> Results Obtained: \nStix Bundle Data: ")
-                rFile.write(str(result))
-#
     elif args.command == TRANSMIT:
-        logLevel = ((json.loads(args.configuration)).get("logLevel", "INFO")).upper()
-#
-#   Process logLevel now.
-        print(logLevel)
-        if(logLevel == "DEBUG"):
-            (logging.getLogger()).setLevel(logging.DEBUG)
-        elif(logLevel == "WARNING"):
-            (logging.getLogger()).setLevel(logging.WARNING)
-
-        logging.debug("Command = TRANSMIT:")
         result = transmit(args)  # stix_transmission
-# Print Output for Transmit
-        print("\n-------- " + str(args.command) + " Output ---------")
-        print("args passed: ")
-        print(args)
-        print("\n---> Results Obtained: ")
-        print(result)
-        print("\n\nSuccess: " + str(result["success"]))
-        print("Search ID: " + str(result["search_id"]))
-        print("\nData: ")
-        print(json.dumps(result["data"], indent=4))
 
-        print(result)
-        logging.info("Success: " + str(result["success"]))
-        logging.info("Search ID: " + str(result["search_id"]))
-        # log result Output
-        with open(rFilename, 'a+') as rFile:
-            rFile.write("\n\n New test RUN --------> " + str(args.command) + " Output -----------\n")
-            rFile.write("args passed: \n")
-            rFile.write(str(args))
-            rFile.write("\nSuccess: " + str(result["success"]))
-            rFile.write("Search ID: " + str(result["search_id"]))
-            rFile.write("\nData is written in the folder: './stix_shifter/stix_transmission/src/modules/guardium/output'")
-            rFile.write("\n   Filename: result_" + str(result["search_id"]) + ".json")
-#
-    logging.info('Run ended.')
+    print(result)
     exit(0)
 
-def readResultFile(searchId):
-    rFilename = "./stix_shifter/stix_transmission/src/modules/guardium/output/result_" + str(searchId) + ".json"
-    logging.debug("Reading file: " + rFilename)
-    exists = os.path.isfile(rFilename)
-    if exists:
-        with open(rFilename, 'r') as f_res:
-            jRes = json.loads(f_res.read())
-        if not ("content" in jRes):
-            jRes = None
-    else:
-        logging.debug("File does not exist.")
-        jRes = None
-    return jRes
 
 def transmit(args):
     """
@@ -386,19 +271,7 @@ def transmit(args):
         is_async
     >
     """
-    logging.debug('Connection: ' + args.connection)
     connection_dict = json.loads(args.connection)
-    logging.debug(connection_dict)
-    cert_str = connection_dict.get("cert")
-    if (cert_str.find("--BEGIN CERTIFICATE") < 0):
-        if (not cert_str.strip()):
-            connection_dict["cert"] = ""
-        else:
-            with open(cert_str) as f:
-                read_data = f.read()
-            connection_dict["cert"] = str(read_data)
-        logging.debug(connection_dict)
-    logging.info('Configuration: ' + args.configuration)
     configuration_dict = json.loads(args.configuration)
     transmission = stix_transmission.StixTransmission(args.module, connection_dict, configuration_dict)
 
