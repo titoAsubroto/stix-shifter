@@ -358,7 +358,8 @@ def __main__():
 #
     logging.info('Run ended.')
     exit(0)
-# this function was recreated to test large data sets coming from Guardium connector
+# this function was created to test large data sets coming from Guardium connector based on 
+# searchId. **ONLY for testing
 def readResultFile(searchId):
     rFilename = "./stix_shifter/stix_transmission/src/modules/guardium/output/result_" + str(searchId) + ".json"
     logging.debug("Reading file: " + rFilename)
