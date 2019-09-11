@@ -204,8 +204,13 @@ class DateTimeToUnixTimestamp(ValueTransformer):
 
 
 def get_all_transformers():
-    #return {"SplunkToTimestamp": SplunkToTimestamp, "Ymd_HMSToTimestamp": Ymd_HMSToTimestamp, "TimestampToGuardium": TimestampToGuardium, "GuardiumToTimestamp": GuardiumToTimestamp, "EpochToGuardium": EpochToGuardium, "EpochToTimestamp": EpochToTimestamp, "ToInteger": ToInteger, "ToString": ToString, "ToLowercaseArray": ToLowercaseArray, "ToBase64": ToBase64, "ToFilePath": ToFilePath, "ToFileName": ToFileName, "StringToBool": StringToBool, "ToDomainName": ToDomainName, "TimestampToMilliseconds": TimestampToMilliseconds,"EpochSecondsToTimestamp": EpochSecondsToTimestamp, "ToIPv4": ToIPv4 }
-    return {"SplunkToTimestamp": SplunkToTimestamp, "EpochToTimestamp": EpochToTimestamp, "ToInteger": ToInteger, "ToString": ToString,
-            "ToLowercaseArray": ToLowercaseArray, "ToBase64": ToBase64, "ToFilePath": ToFilePath, "ToFileName": ToFileName,
-            "StringToBool": StringToBool, "ToDomainName": ToDomainName, "TimestampToMilliseconds": TimestampToMilliseconds,
-            "EpochSecondsToTimestamp": EpochSecondsToTimestamp, "ToIPv4": ToIPv4, "DateTimeToUnixTimestamp": DateTimeToUnixTimestamp}
+    return {"SplunkToTimestamp": SplunkToTimestamp,"EpochToTimestamp": EpochToTimestamp, "ToInteger": ToInteger,
+        "ToLowercaseArray": ToLowercaseArray, "ToBase64": ToBase64, "ToFilePath": ToFilePath, "ToFileName": ToFileName,
+        "StringToBool": StringToBool, "ToDomainName": ToDomainName, "TimestampToMilliseconds": TimestampToMilliseconds,
+        "EpochSecondsToTimestamp": EpochSecondsToTimestamp, "ToIPv4": ToIPv4, "DateTimeToUnixTimestamp": DateTimeToUnixTimestamp,
+        "Ymd_HMSToTimestamp": Ymd_HMSToTimestamp, "TimestampToGuardium": TimestampToGuardium, 
+        "GuardiumToTimestamp": GuardiumToTimestamp,"EpochToGuardium": EpochToGuardium, "ToString": ToString}
+    #return {"SplunkToTimestamp": SplunkToTimestamp, "EpochToTimestamp": EpochToTimestamp, "ToInteger": ToInteger, "ToString": ToString,
+    #        "ToLowercaseArray": ToLowercaseArray, "ToBase64": ToBase64, "ToFilePath": ToFilePath, "ToFileName": ToFileName,
+    #        "StringToBool": StringToBool, "ToDomainName": ToDomainName, "TimestampToMilliseconds": TimestampToMilliseconds,
+    #        "EpochSecondsToTimestamp": EpochSecondsToTimestamp, "ToIPv4": ToIPv4, "DateTimeToUnixTimestamp": DateTimeToUnixTimestamp}
