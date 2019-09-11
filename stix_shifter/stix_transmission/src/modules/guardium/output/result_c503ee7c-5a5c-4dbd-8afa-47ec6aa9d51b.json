@@ -1,0 +1,36 @@
+{
+"query": {"fetchSize": "5", "reportParameter": {"DATABASENAME": "%", "QUERY_FROM_DATE": "2018-06-01 00:00:00", "SHOW_ALIASES": "TRUE", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com", "QUERY_TO_DATE": "2019-05-01 00:00:00", "CLIENTIP": "%"}, "sortType": "asc", "indexFrom": "0", "reportName": "--IBM SC Session Details"},
+"data_source":{"type": "identity", "id": "identity--c503ee7c-5a5c-4dbd-8afa-47ec6aa9d51b", "name": "Guardium", "identity_class": "events","created": "2019-05-01T21:02:53.435Z", "x_Guardium_report": "--IBM SC Session Details"},
+"data": [
+    {
+        "Session Start": "2019-03-03 00:00:02",
+        "Session End": "2019-03-03 00:00:02",
+        "Client IP": "169.54.222.48",
+        "Server IP": "169.55.54.71",
+        "DB User Name": "",
+        "OS User": "TOMCAT",
+        "Service Name": "XE",
+        "Database Name": ""
+    },
+    {
+        "Session Start": "2019-03-03 00:00:08",
+        "Session End": "2019-03-03 00:00:08",
+        "Client IP": "169.54.222.48",
+        "Server IP": "169.55.54.71",
+        "DB User Name": "",
+        "OS User": "TOMCAT",
+        "Service Name": "XE",
+        "Database Name": ""
+    },
+    {
+        "Session Start": "2019-03-03 10:04:32",
+        "Session End": "2019-03-03 10:04:32",
+        "Client IP": "59.47.72.244",
+        "Server IP": "169.44.92.56",
+        "DB User Name": "ROOT",
+        "OS User": "",
+        "Service Name": "169.44.92.56:5.7.21",
+        "Database Name": "MYSQL"
+    }
+]
+}

@@ -1,0 +1,30 @@
+{
+  "query": {
+    "indexFrom": "0",
+    "reportParameter": {
+      "CLIENTIP": "%",
+      "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com",
+      "SERVERIP": "%",
+      "SERVICENAME": "%",
+      "DATABASENAME": "%",
+      "DBUSERNAME": "%",
+      "QUERY_FROM_DATE": "2018-06-01 00:00:00",
+      "SHOW_ALIASES": "TRUE",
+      "QUERY_TO_DATE": "2019-05-01 01:11:11"
+    },
+    "fetchSize": "1000",
+    "reportName": "--IBM SC Session Details",
+    "sortType": "asc"
+  },
+  "credential": {
+    "client_id": "iscguardc1",
+    "client_secret": "00315700-ac63-4448-972c-dcdab5bc9359",
+    "grant_type": "password",
+    "username": "admin",
+    "password": "2wsx@WSX"
+  },
+  "authorization": {
+    "access_token": "52eed9b4-9656-45a6-b793-75e812ec8804",
+    "expiresTimestamp": 1557435987.337931
+  }
+}

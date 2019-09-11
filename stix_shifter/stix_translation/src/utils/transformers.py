@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import base64
 import socket
 import re
+import logging
 from urllib.parse import urlparse
 
 
@@ -39,6 +40,39 @@ class EpochToTimestamp(ValueTransformer):
         return (datetime.fromtimestamp(int(epoch) / 1000, timezone.utc)
                 .strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z')
 
+class EpochToGuardium(ValueTransformer):
+    """A value transformer for Epoch to Guardium timestamp"""
+
+    @staticmethod
+    def transform(epoch):
+        return (datetime.fromtimestamp(int(epoch) / 1000, timezone.utc).strftime('%Y-%m-%d %H:%M:%S'))
+
+class GuardiumToTimestamp(ValueTransformer):
+    """A value transformer for converting Guardium timestamp to regular timestamp"""
+
+    @staticmethod
+    def transform(gdmTime):
+        rgx = r"(\d\d\d\d-\d\d-\d\d)\s(\d\d:\d\d:\d\d)"
+        mtch = (re.findall(rgx, gdmTime))[0]
+        return (mtch[0] + 'T' + mtch[1]) + '.000Z'
+
+class TimestampToGuardium(ValueTransformer):
+    """A value transformer for converting  regular timestamp to Guardium timestamp"""
+
+    @staticmethod
+    def transform(timestamp):
+        rgx = r"(\d\d\d\d-\d\d-\d\d).(\d\d:\d\d:\d\d)"
+        mtch = (re.findall(rgx, timestamp))[0]
+        return (mtch[0] + ' ' + mtch[1])
+class Ymd_HMSToTimestamp(ValueTransformer):
+    """A value transformer for the timestamps"""
+
+    @staticmethod
+    def transform(dt_Str):
+        #print(dt_Str)
+        dt_obj = datetime.strptime(dt_Str, '%Y-%m-%d %H:%M:%S')
+        #print(dt_obj)
+        return (datetime.fromtimestamp(datetime.timestamp(dt_obj), timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z')
 
 class EpochSecondsToTimestamp(ValueTransformer):
     """A value transformer for the timestamps"""
@@ -170,6 +204,7 @@ class DateTimeToUnixTimestamp(ValueTransformer):
 
 
 def get_all_transformers():
+    #return {"SplunkToTimestamp": SplunkToTimestamp, "Ymd_HMSToTimestamp": Ymd_HMSToTimestamp, "TimestampToGuardium": TimestampToGuardium, "GuardiumToTimestamp": GuardiumToTimestamp, "EpochToGuardium": EpochToGuardium, "EpochToTimestamp": EpochToTimestamp, "ToInteger": ToInteger, "ToString": ToString, "ToLowercaseArray": ToLowercaseArray, "ToBase64": ToBase64, "ToFilePath": ToFilePath, "ToFileName": ToFileName, "StringToBool": StringToBool, "ToDomainName": ToDomainName, "TimestampToMilliseconds": TimestampToMilliseconds,"EpochSecondsToTimestamp": EpochSecondsToTimestamp, "ToIPv4": ToIPv4 }
     return {"SplunkToTimestamp": SplunkToTimestamp, "EpochToTimestamp": EpochToTimestamp, "ToInteger": ToInteger, "ToString": ToString,
             "ToLowercaseArray": ToLowercaseArray, "ToBase64": ToBase64, "ToFilePath": ToFilePath, "ToFileName": ToFileName,
             "StringToBool": StringToBool, "ToDomainName": ToDomainName, "TimestampToMilliseconds": TimestampToMilliseconds,

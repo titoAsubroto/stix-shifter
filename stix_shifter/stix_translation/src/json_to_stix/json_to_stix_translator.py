@@ -1,6 +1,6 @@
 import re
 import uuid
-
+import logging
 from . import observable
 from stix2validator import validate_instance, print_results
 
@@ -14,11 +14,12 @@ def convert_to_stix(data_source, map_data, data, transformers, options, callback
         "objects": []
     }
 
+    logging.debug("Start converting to a Stix Bundle ...")
     identity_id = data_source['id']
     bundle['objects'] += [data_source]
 
     ds2stix = DataSourceObjToStixObj(identity_id, map_data, transformers, options, callback)
-
+    logging.debug("\nGenerate results\n")
     # map data list to list of transformed objects
     results = list(map(ds2stix.transform, data))
 
@@ -35,7 +36,7 @@ class DataSourceObjToStixObj:
         self.transformers = transformers
         self.options = options
         self.callback = callback
-
+        (logging.getLogger()).setLevel(logging.DEBUG)
         # parse through options
         self.stix_validator = options.get('stix_validator', False)
         self.cybox_default = options.get('cybox_default', True)
@@ -54,10 +55,15 @@ class DataSourceObjToStixObj:
         """
         if ds_key not in obj:
             print('{} not found in object'.format(ds_key))
+            logging.debug('{} not found in object'.format(ds_key))
             return None
         ret_val = obj[ds_key]
         if transformer is not None:
-            return transformer.transform(ret_val)
+            logging.debug("getvalue transform")
+            ret_val_txf =  transformer.transform(ret_val)
+            logging.debug(str(ret_val) + " ==>" + str(ret_val_txf))
+            return ret_val_txf
+        logging.debug(ret_val)
         return ret_val
 
     @staticmethod
@@ -69,7 +75,9 @@ class DataSourceObjToStixObj:
         :param key: the key to add
         :param stix_value: the STIX value translated from the input object
         """
-
+        logging.debug('Add property')
+        logging.debug(key)
+        logging.debug(stix_value)
         split_key = key.split('.')
         child_obj = obj
         parent_props = split_key[0:-1]
@@ -96,6 +104,7 @@ class DataSourceObjToStixObj:
         :param obj_name_map: the mapping of object name to actual object
         :param obj_name: the object name derived from the mapping file
         """
+        logging.debug('handle cybox')
         obj_type, obj_prop = key_to_add.split('.', 1)
         objs_dir = observation['objects']
         
@@ -120,6 +129,7 @@ class DataSourceObjToStixObj:
         :return: whether STIX value is valid for this STIX property
         :rtype: bool
         """
+        logging.debug('stix value valid')
         if stix_value is None:
             return False
         elif key in props_map and 'valid_regex' in props_map[key]:
@@ -133,10 +143,12 @@ class DataSourceObjToStixObj:
         to_map = obj[ ds_key ]
 
         if ds_key not in ds_map:
+            logging.debug('{} is not found in map, skipping'.format(ds_key))
             print('{} is not found in map, skipping'.format(ds_key))
             return
-
+        logging.debug("ds_key - " + ds_key)
         if isinstance( to_map, dict ):
+            logging.debug('{} is complex; descending'.format(to_map))
             print('{} is complex; descending'.format(to_map))
             # If the object is complex we must descend into the map on both sides
             for key in to_map.keys():
@@ -158,9 +170,12 @@ class DataSourceObjToStixObj:
                     return
 
             ds_key_def_list = [ds_key_def_obj]
-
+        logging.debug("Entering the ds FOR loop")
+        logging.debug(ds_key_def_list)
         for ds_key_def in ds_key_def_list:
+            logging.debug(ds_key_def)
             if ds_key_def is None or 'key' not in ds_key_def:
+                logging.debug('{} is not valid (None, or missing key)'.format(ds_key_def))
                 print('{} is not valid (None, or missing key)'.format(ds_key_def))
                 continue
 
@@ -168,12 +183,13 @@ class DataSourceObjToStixObj:
                 key_to_add = generic_hash_key
             else:
                 key_to_add = ds_key_def['key']
-
+            logging.debug("Calling self.transformers")
             transformer = self.transformers[ds_key_def['transformer']] if 'transformer' in ds_key_def else None
-
+            logging.debug("Checking cybox value for decisions")
             group = False
             if ds_key_def.get('cybox', self.cybox_default):
                 object_name = ds_key_def.get('object')
+                logging.debug("ds_key_def inside {}".format(ds_key_def))
                 print("ds_key_def inside {}".format(ds_key_def))
                 if 'references' in ds_key_def:
                     references = ds_key_def['references']
@@ -194,6 +210,7 @@ class DataSourceObjToStixObj:
 
                 DataSourceObjToStixObj._handle_cybox_key_def(key_to_add, observation, stix_value, object_map, object_name, group)
             else:
+                logging.debug("cybox - false")
                 stix_value = DataSourceObjToStixObj._get_value(obj, ds_key, transformer)
                 if not DataSourceObjToStixObj._valid_stix_value(self.properties, key_to_add, stix_value):
                     continue
@@ -217,17 +234,19 @@ class DataSourceObjToStixObj:
             'created_by_ref': self.identity_id,
             'objects': {}
         }
-
+        logging.debug(observation)
+        logging.debug(obj)
         # create normal type objects
         if isinstance(obj,dict):
             for ds_key in obj.keys():
                 self._transform(object_map,observation,ds_map,ds_key,obj)
         else:
+            logging.debug("Not a dict: {}".format(obj))
             print("Not a dict: {}".format(obj))
 
         # Validate each STIX object
         if self.stix_validator:
             validated_result = validate_instance(observation)
             print_results(validated_result)
-
+        logging.debug(observation)
         return observation
