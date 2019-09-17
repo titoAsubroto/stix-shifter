@@ -17,11 +17,12 @@ def convert_to_stix(data_source, map_data, data, transformers, options, callback
     logging.debug("Start converting to a Stix Bundle ...")
     identity_id = data_source['id']
     bundle['objects'] += [data_source]
-
+    #logging.debug("\nBundle: " + str(bundle))
     ds2stix = DataSourceObjToStixObj(identity_id, map_data, transformers, options, callback)
     logging.debug("\nGenerate results\n")
     # map data list to list of transformed objects
     results = list(map(ds2stix.transform, data))
+    #logging.debug(results)
 
     bundle["objects"] += results
 
@@ -58,6 +59,7 @@ class DataSourceObjToStixObj:
             logging.debug('{} not found in object'.format(ds_key))
             return None
         ret_val = obj[ds_key]
+        logging.debug(ds_key)
         if transformer is not None:
             logging.debug("getvalue transform")
             ret_val_txf =  transformer.transform(ret_val)

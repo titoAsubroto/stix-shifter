@@ -9,7 +9,7 @@ from stix_shifter.stix_translation.src.modules.cim import cim_data_mapping
 from stix_shifter.stix_translation.src.modules.car import car_data_mapping
 from stix_shifter.stix_translation.src.utils.unmapped_attribute_stripper import strip_unmapped_attributes
 import sys
-
+import logging
 #TRANSLATION_MODULES = ['qradar', 'dummy', 'car', 'cim', 'splunk', 'elastic', 'bigfix', 'csa', 'csa:at', 'csa:nf', 'aws_security_hub', 'carbonblack', 'elastic_ecs', 'proxy', 'stix_bundle']
 
 TRANSLATION_MODULES = ['qradar', 'dummy', 'car', 'cim', 'splunk', 'elastic', 'guardium', 'bigfix', 'csa', 'csa:at', 'csa:nf', 'aws_security_hub', 'carbonblack']
@@ -109,6 +109,9 @@ class StixTranslation:
             elif translate_type == RESULTS:
                 # Converting data from the datasource to STIX objects
                 try:
+                    logging.info("print----- Translate Results 1")
+                    logging.info(data)
+                    #logging.info(data_source)
                     return interface.translate_results(data_source, data, options)
                 except Exception:
                     raise TranslationResultException()
