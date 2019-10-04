@@ -38,4 +38,6 @@ class BaseTranslator:
         :rtype: str
         """
 
-        return self.query_translator.transform_query(data, antlr_parsing_object, data_model_mapper, options, mapping)
+        output_of_transform_query = self.query_translator.transform_query(data, antlr_parsing_object, data_model_mapper, options, mapping)
+        print(output_of_transform_query)
+        return output_of_transform_query

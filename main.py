@@ -43,7 +43,7 @@ def __main__():
     """
     # Start logging based on logLevel -- for debugging purpuse -- Subroto Bhattacharya
     logFile = "./runlogs/stix_shifter_run.log"
-    logging.basicConfig(filename=logFile, level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename=logFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     logging.info('-----------Run Started.------------')
     # define result file for capturing test result outputs  -- Subroto Bhattacharya
     rFilename = "./test_results/stix_shifter_result.log"
@@ -157,6 +157,7 @@ def __main__():
 
     args = parent_parser.parse_args()
     print(args)
+    logging.debug(args)
     if args.command is None:
         parent_parser.print_help(sys.stderr)
         sys.exit(1)
@@ -218,7 +219,7 @@ def __main__():
         # Execute means take the STIX SCO pattern as input, execute query, and return STIX as output
         translation = stix_translation.StixTranslation()
         dsl = translation.translate(args.translation_module, 'query', args.data_source, args.query)
-        print("DSL Translation returned {}".format(dsl))
+        logging.info("DSL Translation returned {}".format(dsl))
         connection_dict = json.loads(args.connection)
         configuration_dict = json.loads(args.configuration)
 
@@ -227,7 +228,7 @@ def __main__():
         results = []
         for query in dsl['queries']:
             search_result = transmission.query(query)
-            print("Executed search; returned id is {}".format(search_result))
+            logging.info("Executed search; returned id is {}".format(search_result))
 
             if search_result["success"]:
                 search_id = search_result["search_id"]
@@ -279,7 +280,7 @@ def __main__():
         print("print----- data")
         print(args.data)
 
-        #print("print----- TRANSLATE - 1")
+        print("print----- TRANSLATE - 1")
         (logging.getLogger()).setLevel(logging.DEBUG)
         logging.debug("Command = TRANSLATE:")
         options = json.loads(args.options) if bool(args.options) else {}
@@ -288,11 +289,11 @@ def __main__():
         if args.data_mapper:
             options['data_mapper'] = args.data_mapper
         recursion_limit = args.recursion_limit if args.recursion_limit else 1000
-        #print("print----- TRANSLATE - 2")
+        print("print----- TRANSLATE - 2")
         logging.debug("Options: " + str(options))
-        #print("print----- TRANSLATE - 3")
+        print("print----- TRANSLATE - 3")
         translation = stix_translation.StixTranslation()
-        #print("print----- TRANSLATE - 4")
+        print("print----- TRANSLATE - 4")
         result = translation.translate(
             args.module, args.translate_type, args.data_source, args.data, options=options, recursion_limit=recursion_limit)
 # Print Output for Translate

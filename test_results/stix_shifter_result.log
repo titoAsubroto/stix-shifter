@@ -6,3 +6,136 @@ Namespace(command='translate', data="[x_Guardium:datacategory = 'session' OR x_G
 
 ---------Results Obtained: 
 Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}

@@ -20,5 +20,5 @@ class BaseResultTranslator(object, metaclass=ABCMeta):
         :return: translated STIX formatted results
         :rtype: str
         """
-        # if translating some datasource to STIX results...
+        # if translating some datasource to STIX results ...
         pass

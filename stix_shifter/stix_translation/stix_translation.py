@@ -53,6 +53,7 @@ class StixTranslation:
         :return: translated results
         :rtype: str
         """
+        print("in Translate method")
         dialect = None
         mod_dia = module.split(':', 1)
         module = mod_dia[0]
@@ -63,6 +64,7 @@ class StixTranslation:
             if module not in TRANSLATION_MODULES:
                 raise UnsupportedDataSourceException("{} is an unsupported data source.".format(module))
 
+            print("translator_module - " + str(module))
             translator_module = importlib.import_module(
                 "stix_shifter.stix_translation.src.modules." + module + "." + module + "_translator")
 
@@ -75,6 +77,7 @@ class StixTranslation:
             if translate_type == QUERY or translate_type == PARSE:
                 # Increase the python recursion limit to allow ANTLR to parse large patterns
                 current_recursion_limit = sys.getrecursionlimit()
+                print("Translate type is Query")
                 if current_recursion_limit < recursion_limit:
                     print("Changing Python recursion limit from {} to {}".format(current_recursion_limit, recursion_limit))
                     sys.setrecursionlimit(recursion_limit)
@@ -93,7 +96,9 @@ class StixTranslation:
                         # Remove unmapped STIX attributes from antlr parsing
                         antlr_parsing = strip_unmapped_attributes(antlr_parsing, data_model_mapper)
                     # Converting STIX pattern to datasource query
+                    print("Calling Transform query: " + str(data))
                     queries = interface.transform_query(data, antlr_parsing, data_model_mapper, options)
+                    print("Out from transform query: " + str(queries))
                     return {'queries': queries}
                 else:
                     self._validate_pattern(data)

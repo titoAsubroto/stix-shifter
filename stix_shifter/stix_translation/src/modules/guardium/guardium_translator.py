@@ -12,6 +12,6 @@ class Translator(BaseTranslator):
         filepath = path.abspath(
             path.join(basepath, "json", "to_stix_map.json"))
         self.mapping_filepath = filepath
-        #print("print----- Translator assigned")
         self.result_translator = JSONToStix(filepath)
         self.query_translator = StixToQuery()
+        print("print----- Translator assigned")
