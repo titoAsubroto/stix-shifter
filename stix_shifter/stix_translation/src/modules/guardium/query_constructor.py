@@ -479,7 +479,9 @@ def translate_pattern(pattern: Pattern, data_model_mapping):
     logging.debug("Entered translate_pattern------\nTranslate Pattern: " + str(pattern))
     logging.debug("Data model mapping: " + str(data_model_mapping))
     # Converting query object to datasource query
-    parsed_stix = parse_stix(pattern)
+    # timerange set to 24 hours for Guardium; timerange is provided in minutes (as delta)
+    timerange = 24 * 60 * 60
+    parsed_stix = parse_stix(pattern,timerange)
 
     logging.debug("Parsed_stix: " + str(parsed_stix))
 #
