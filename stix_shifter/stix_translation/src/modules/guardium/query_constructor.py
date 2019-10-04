@@ -1,11 +1,11 @@
 from stix_shifter.stix_translation.src.patterns.pattern_objects import ObservationExpression, ComparisonExpression, \
     ComparisonExpressionOperators, ComparisonComparators, Pattern, \
     CombinedComparisonExpression, CombinedObservationExpression, ObservationOperators
-from stix_shifter.stix_translation.src.transformers import TimestampToMilliseconds
-from stix_shifter.stix_translation.src.transformers import TimestampToGuardium
+from stix_shifter.stix_translation.src.utils.transformers import TimestampToMilliseconds
+from stix_shifter.stix_translation.src.utils.transformers import TimestampToGuardium
 from stix_shifter.stix_translation.src.json_to_stix import observable
-from stix_shifter.stix_translation.src.stix_pattern_parser import parse_stix
-from stix_shifter.stix_translation.src import transformers
+from stix_shifter.stix_translation.src.utils.stix_pattern_parser import parse_stix
+from stix_shifter.stix_translation.src.utils import transformers
 #
 # Following added by Subroto
 import logging
@@ -237,7 +237,7 @@ class QueryStringPatternTranslator:
     # if the intersection is null use the default Category
     #
         logging.info("---- Start Generate ReportDefs (GenReps) -----")
-        reportSet = None;
+        reportSet = None
         param_map = self.REPORT_PARAMS_MAP["maps"]
         param_cmn = self.REPORT_PARAMS_MAP["common"]
         logging.debug(self.reportParamsPassed)
