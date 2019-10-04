@@ -43,8 +43,10 @@ def __main__():
     """
     # Start logging based on logLevel -- for debugging purpuse -- Subroto Bhattacharya
     logFile = "./runlogs/stix_shifter_run.log"
-    logging.basicConfig(filename=logFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename=logFile, level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
     logging.info('-----------Run Started.------------')
+    # define result file for capturing test result outputs  -- Subroto Bhattacharya
+    rFilename = "./test_results/stix_shifter_result.log"
 
     # process arguments
     parent_parser = argparse.ArgumentParser(description='stix_shifter')
@@ -210,7 +212,7 @@ def __main__():
         app.run(debug=True, port=int(host_address[1]), host=host_address[0])
 
     elif args.command == EXECUTE:
-        rFilename = "./test_results/stix_shifter_result.log" 
+        # rFilename = "./test_results/stix_shifter_result.log" 
         logging.info('Executing the command: ' + args.command)
 
         # Execute means take the STIX SCO pattern as input, execute query, and return STIX as output
@@ -361,11 +363,11 @@ def __main__():
 # this function was created to test large data sets coming from Guardium connector based on 
 # searchId. **ONLY for testing
 def readResultFile(searchId):
-    rFilename = "./stix_shifter/stix_transmission/src/modules/guardium/output/result_" + str(searchId) + ".json"
-    logging.debug("Reading file: " + rFilename)
-    exists = os.path.isfile(rFilename)
+    oFilename = "./stix_shifter/stix_transmission/src/modules/guardium/output/result_" + str(searchId) + ".json"
+    logging.debug("Reading file: " + oFilename)
+    exists = os.path.isfile(oFilename)
     if exists:
-        with open(rFilename, 'r') as f_res:
+        with open(oFilename, 'r') as f_res:
             jRes = json.loads(f_res.read())
         if not ("content" in jRes):
             jRes = None

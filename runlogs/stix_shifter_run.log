@@ -1,0 +1,7 @@
+2019-10-04 08:44:38,795 - INFO - -----------Run Started.------------
+2019-10-04 08:44:38,797 - INFO - Positional Arguments.
+2019-10-04 08:44:38,797 - INFO - Optional Arguments.
+2019-10-04 08:44:38,800 - INFO - Operation subparser.
+2019-10-04 08:44:38,801 - DEBUG - Command = TRANSLATE:
+2019-10-04 08:44:38,801 - DEBUG - Options: {}
+2019-10-04 08:44:38,804 - INFO - Run ended.
