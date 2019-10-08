@@ -96,9 +96,9 @@ class StixTranslation:
                         # Remove unmapped STIX attributes from antlr parsing
                         antlr_parsing = strip_unmapped_attributes(antlr_parsing, data_model_mapper)
                     # Converting STIX pattern to datasource query
-                    print("Calling Transform query: " + str(data))
+                    logging.debug("Calling Transform query: " + str(data))
                     queries = interface.transform_query(data, antlr_parsing, data_model_mapper, options)
-                    print("Out from transform query: " + str(queries))
+                    logging.debug("Out from transform query: " + str(queries))
                     return {'queries': queries}
                 else:
                     self._validate_pattern(data)

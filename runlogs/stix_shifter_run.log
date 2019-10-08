@@ -2211,3 +2211,238 @@ Translate Pattern: Pattern[ObservationExpression(CombinedComparisonExpression(Co
     }
 ]
 2019-10-08 14:18:10,153 - INFO - Run ended.
+2019-10-08 14:24:22,932 - INFO - -----------Run Started.------------
+2019-10-08 14:24:22,937 - INFO - Positional Arguments.
+2019-10-08 14:24:22,937 - INFO - Optional Arguments.
+2019-10-08 14:24:22,944 - INFO - Operation subparser.
+2019-10-08 14:24:22,950 - DEBUG - Command = TRANSLATE:
+2019-10-08 14:24:22,950 - DEBUG - Options: {}
+2019-10-08 14:25:01,585 - DEBUG - ObjectPath [120 110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory
+2019-10-08 14:25:01,585 - DEBUG - String [240 232 125 110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] 'activity'
+2019-10-08 14:25:01,586 - DEBUG - OrderableLiteral [232 125 110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] 'activity'
+2019-10-08 14:25:01,586 - DEBUG - PrimitiveLiteral [125 110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] 'activity'
+2019-10-08 14:25:01,586 - DEBUG - PropTestEqual [110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity' | stack=['x_Guardium:datacategory', 'activity']
+2019-10-08 14:25:01,587 - DEBUG - ObjectPath [120 110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:start
+2019-10-08 14:25:01,587 - DEBUG - String [240 232 125 110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] '2018-06-01T00:00:00.123Z'
+2019-10-08 14:25:01,588 - DEBUG - OrderableLiteral [232 125 110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] '2018-06-01T00:00:00.123Z'
+2019-10-08 14:25:01,588 - DEBUG - PrimitiveLiteral [125 110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] '2018-06-01T00:00:00.123Z'
+2019-10-08 14:25:01,588 - DEBUG - PropTestEqual [110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:start='2018-06-01T00:00:00.123Z' | stack=[ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity), 'x_Guardium:start', '2018-06-01T00:00:00.123Z']
+2019-10-08 14:25:01,589 - DEBUG - ComparisonExpressionAnded [12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'
+2019-10-08 14:25:01,589 - DEBUG - ObjectPath [120 110 114 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:end
+2019-10-08 14:25:01,589 - DEBUG - String [240 232 125 110 114 12 12 12 12 12 99 78 8 66 55 44 40] '2019-05-01T01:11:11.123Z'
+2019-10-08 14:25:01,590 - DEBUG - OrderableLiteral [232 125 110 114 12 12 12 12 12 99 78 8 66 55 44 40] '2019-05-01T01:11:11.123Z'
+2019-10-08 14:25:01,590 - DEBUG - PrimitiveLiteral [125 110 114 12 12 12 12 12 99 78 8 66 55 44 40] '2019-05-01T01:11:11.123Z'
+2019-10-08 14:25:01,590 - DEBUG - PropTestEqual [110 114 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:end='2019-05-01T01:11:11.123Z' | stack=[CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity)), 'x_Guardium:end', '2019-05-01T01:11:11.123Z']
+2019-10-08 14:25:01,591 - DEBUG - ComparisonExpressionAnded [12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'
+2019-10-08 14:25:01,591 - DEBUG - ObjectPath [120 110 114 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:remotesource
+2019-10-08 14:25:01,592 - DEBUG - String [240 232 125 110 114 12 12 12 12 99 78 8 66 55 44 40] 'guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:25:01,592 - DEBUG - OrderableLiteral [232 125 110 114 12 12 12 12 99 78 8 66 55 44 40] 'guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:25:01,592 - DEBUG - PrimitiveLiteral [125 110 114 12 12 12 12 99 78 8 66 55 44 40] 'guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:25:01,592 - DEBUG - PropTestEqual [110 114 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' | stack=[CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))), 'x_Guardium:remotesource', 'guardiumv10col01.guardiumlabservices.ibm.com']
+2019-10-08 14:25:01,593 - DEBUG - ComparisonExpressionAnded [12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:25:01,594 - DEBUG - ObjectPath [120 110 114 12 12 12 99 78 8 66 55 44 40] user-account:db_user
+2019-10-08 14:25:01,594 - DEBUG - String [240 232 125 110 114 12 12 12 99 78 8 66 55 44 40] 'admin'
+2019-10-08 14:25:01,594 - DEBUG - OrderableLiteral [232 125 110 114 12 12 12 99 78 8 66 55 44 40] 'admin'
+2019-10-08 14:25:01,594 - DEBUG - PrimitiveLiteral [125 110 114 12 12 12 99 78 8 66 55 44 40] 'admin'
+2019-10-08 14:25:01,595 - DEBUG - PropTestEqual [110 114 12 12 12 99 78 8 66 55 44 40] user-account:db_user='admin' | stack=[CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity)))), 'user-account:db_user', 'admin']
+2019-10-08 14:25:01,595 - DEBUG - ComparisonExpressionAnded [12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'
+2019-10-08 14:25:01,596 - DEBUG - ObjectPath [120 110 114 12 12 99 78 8 66 55 44 40] user-account:os_user
+2019-10-08 14:25:01,596 - DEBUG - String [240 232 125 110 114 12 12 99 78 8 66 55 44 40] 'john'
+2019-10-08 14:25:01,596 - DEBUG - OrderableLiteral [232 125 110 114 12 12 99 78 8 66 55 44 40] 'john'
+2019-10-08 14:25:01,597 - DEBUG - PrimitiveLiteral [125 110 114 12 12 99 78 8 66 55 44 40] 'john'
+2019-10-08 14:25:01,597 - DEBUG - PropTestEqual [110 114 12 12 99 78 8 66 55 44 40] user-account:os_user='john' | stack=[CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))))), 'user-account:os_user', 'john']
+2019-10-08 14:25:01,598 - DEBUG - ComparisonExpressionAnded [12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'
+2019-10-08 14:25:01,598 - DEBUG - ObjectPath [120 110 114 12 99 78 8 66 55 44 40] ipv4-addr:dst_ip
+2019-10-08 14:25:01,599 - DEBUG - String [240 232 125 110 114 12 99 78 8 66 55 44 40] '171.5.2.2'
+2019-10-08 14:25:01,599 - DEBUG - OrderableLiteral [232 125 110 114 12 99 78 8 66 55 44 40] '171.5.2.2'
+2019-10-08 14:25:01,599 - DEBUG - PrimitiveLiteral [125 110 114 12 99 78 8 66 55 44 40] '171.5.2.2'
+2019-10-08 14:25:01,599 - DEBUG - PropTestEqual [110 114 12 99 78 8 66 55 44 40] ipv4-addr:dst_ip='171.5.2.2' | stack=[CombinedComparisonExpression(ComparisonExpression(user-account:os_user ComparisonComparators.Equal john) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity)))))), 'ipv4-addr:dst_ip', '171.5.2.2']
+2019-10-08 14:25:01,600 - DEBUG - ComparisonExpressionAnded [12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'
+2019-10-08 14:25:01,601 - DEBUG - ObjectPath [120 110 114 99 78 8 66 55 44 40] ipv4-addr:src_ip
+2019-10-08 14:25:01,601 - DEBUG - String [240 232 125 110 114 99 78 8 66 55 44 40] '192.178.2.2'
+2019-10-08 14:25:01,601 - DEBUG - OrderableLiteral [232 125 110 114 99 78 8 66 55 44 40] '192.178.2.2'
+2019-10-08 14:25:01,602 - DEBUG - PrimitiveLiteral [125 110 114 99 78 8 66 55 44 40] '192.178.2.2'
+2019-10-08 14:25:01,602 - DEBUG - PropTestEqual [110 114 99 78 8 66 55 44 40] ipv4-addr:src_ip='192.178.2.2' | stack=[CombinedComparisonExpression(ComparisonExpression(ipv4-addr:dst_ip ComparisonComparators.Equal 171.5.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:os_user ComparisonComparators.Equal john) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))))))), 'ipv4-addr:src_ip', '192.178.2.2']
+2019-10-08 14:25:01,603 - DEBUG - ComparisonExpressionAnded [99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2'
+2019-10-08 14:25:01,604 - DEBUG - ObservationExpressionSimple [8 66 55 44 40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']
+2019-10-08 14:25:01,605 - DEBUG - Current Parser Stack: []
+2019-10-08 14:25:01,606 - DEBUG - ObservationExpressionStartStop [66 55 44 40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'
+2019-10-08 14:25:01,608 - DEBUG - ObservationExpressionAnd [55 44 40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'
+2019-10-08 14:25:01,609 - DEBUG - ObservationExpressionOr [44 40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'
+2019-10-08 14:25:01,611 - DEBUG - ObservationExpressions [40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'
+2019-10-08 14:25:01,612 - DEBUG - Pattern [] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'<EOF>
+2019-10-08 14:25:05,417 - DEBUG - Pattern[ObservationExpression(CombinedComparisonExpression(ComparisonExpression(ipv4-addr:src_ip ComparisonComparators.Equal 192.178.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(ipv4-addr:dst_ip ComparisonComparators.Equal 171.5.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:os_user ComparisonComparators.Equal john) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))))))))) StartStopQualifier(STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z', start=t'2016-06-01T00:00:00.123Z', stop=t'2019-06-01T01:11:11.123Z')]
+2019-10-08 14:26:37,121 - INFO - -----------Run Started.------------
+2019-10-08 14:26:37,125 - INFO - Positional Arguments.
+2019-10-08 14:26:37,125 - INFO - Optional Arguments.
+2019-10-08 14:26:37,132 - INFO - Operation subparser.
+2019-10-08 14:26:37,138 - DEBUG - Command = TRANSLATE:
+2019-10-08 14:26:37,138 - DEBUG - Options: {}
+2019-10-08 14:26:45,042 - DEBUG - ObjectPath [120 110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory
+2019-10-08 14:26:45,044 - DEBUG - String [240 232 125 110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] 'activity'
+2019-10-08 14:26:45,044 - DEBUG - OrderableLiteral [232 125 110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] 'activity'
+2019-10-08 14:26:45,045 - DEBUG - PrimitiveLiteral [125 110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] 'activity'
+2019-10-08 14:26:45,045 - DEBUG - PropTestEqual [110 12 12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity' | stack=['x_Guardium:datacategory', 'activity']
+2019-10-08 14:26:45,046 - DEBUG - ObjectPath [120 110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:start
+2019-10-08 14:26:45,046 - DEBUG - String [240 232 125 110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] '2018-06-01T00:00:00.123Z'
+2019-10-08 14:26:45,047 - DEBUG - OrderableLiteral [232 125 110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] '2018-06-01T00:00:00.123Z'
+2019-10-08 14:26:45,047 - DEBUG - PrimitiveLiteral [125 110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] '2018-06-01T00:00:00.123Z'
+2019-10-08 14:26:45,047 - DEBUG - PropTestEqual [110 114 12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:start='2018-06-01T00:00:00.123Z' | stack=[ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity), 'x_Guardium:start', '2018-06-01T00:00:00.123Z']
+2019-10-08 14:26:45,048 - DEBUG - ComparisonExpressionAnded [12 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'
+2019-10-08 14:26:45,048 - DEBUG - ObjectPath [120 110 114 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:end
+2019-10-08 14:26:45,049 - DEBUG - String [240 232 125 110 114 12 12 12 12 12 99 78 8 66 55 44 40] '2019-05-01T01:11:11.123Z'
+2019-10-08 14:26:45,049 - DEBUG - OrderableLiteral [232 125 110 114 12 12 12 12 12 99 78 8 66 55 44 40] '2019-05-01T01:11:11.123Z'
+2019-10-08 14:26:45,049 - DEBUG - PrimitiveLiteral [125 110 114 12 12 12 12 12 99 78 8 66 55 44 40] '2019-05-01T01:11:11.123Z'
+2019-10-08 14:26:45,050 - DEBUG - PropTestEqual [110 114 12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:end='2019-05-01T01:11:11.123Z' | stack=[CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity)), 'x_Guardium:end', '2019-05-01T01:11:11.123Z']
+2019-10-08 14:26:45,050 - DEBUG - ComparisonExpressionAnded [12 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'
+2019-10-08 14:26:45,051 - DEBUG - ObjectPath [120 110 114 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:remotesource
+2019-10-08 14:26:45,051 - DEBUG - String [240 232 125 110 114 12 12 12 12 99 78 8 66 55 44 40] 'guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:26:45,051 - DEBUG - OrderableLiteral [232 125 110 114 12 12 12 12 99 78 8 66 55 44 40] 'guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:26:45,052 - DEBUG - PrimitiveLiteral [125 110 114 12 12 12 12 99 78 8 66 55 44 40] 'guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:26:45,052 - DEBUG - PropTestEqual [110 114 12 12 12 12 99 78 8 66 55 44 40] x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' | stack=[CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))), 'x_Guardium:remotesource', 'guardiumv10col01.guardiumlabservices.ibm.com']
+2019-10-08 14:26:45,053 - DEBUG - ComparisonExpressionAnded [12 12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:26:45,053 - DEBUG - ObjectPath [120 110 114 12 12 12 99 78 8 66 55 44 40] user-account:db_user
+2019-10-08 14:26:45,054 - DEBUG - String [240 232 125 110 114 12 12 12 99 78 8 66 55 44 40] 'admin'
+2019-10-08 14:26:45,054 - DEBUG - OrderableLiteral [232 125 110 114 12 12 12 99 78 8 66 55 44 40] 'admin'
+2019-10-08 14:26:45,054 - DEBUG - PrimitiveLiteral [125 110 114 12 12 12 99 78 8 66 55 44 40] 'admin'
+2019-10-08 14:26:45,055 - DEBUG - PropTestEqual [110 114 12 12 12 99 78 8 66 55 44 40] user-account:db_user='admin' | stack=[CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity)))), 'user-account:db_user', 'admin']
+2019-10-08 14:26:45,056 - DEBUG - ComparisonExpressionAnded [12 12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'
+2019-10-08 14:26:45,056 - DEBUG - ObjectPath [120 110 114 12 12 99 78 8 66 55 44 40] user-account:os_user
+2019-10-08 14:26:45,056 - DEBUG - String [240 232 125 110 114 12 12 99 78 8 66 55 44 40] 'john'
+2019-10-08 14:26:45,057 - DEBUG - OrderableLiteral [232 125 110 114 12 12 99 78 8 66 55 44 40] 'john'
+2019-10-08 14:26:45,057 - DEBUG - PrimitiveLiteral [125 110 114 12 12 99 78 8 66 55 44 40] 'john'
+2019-10-08 14:26:45,057 - DEBUG - PropTestEqual [110 114 12 12 99 78 8 66 55 44 40] user-account:os_user='john' | stack=[CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))))), 'user-account:os_user', 'john']
+2019-10-08 14:26:45,058 - DEBUG - ComparisonExpressionAnded [12 12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'
+2019-10-08 14:26:45,059 - DEBUG - ObjectPath [120 110 114 12 99 78 8 66 55 44 40] ipv4-addr:dst_ip
+2019-10-08 14:26:45,059 - DEBUG - String [240 232 125 110 114 12 99 78 8 66 55 44 40] '171.5.2.2'
+2019-10-08 14:26:45,059 - DEBUG - OrderableLiteral [232 125 110 114 12 99 78 8 66 55 44 40] '171.5.2.2'
+2019-10-08 14:26:45,060 - DEBUG - PrimitiveLiteral [125 110 114 12 99 78 8 66 55 44 40] '171.5.2.2'
+2019-10-08 14:26:45,060 - DEBUG - PropTestEqual [110 114 12 99 78 8 66 55 44 40] ipv4-addr:dst_ip='171.5.2.2' | stack=[CombinedComparisonExpression(ComparisonExpression(user-account:os_user ComparisonComparators.Equal john) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity)))))), 'ipv4-addr:dst_ip', '171.5.2.2']
+2019-10-08 14:26:45,061 - DEBUG - ComparisonExpressionAnded [12 99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'
+2019-10-08 14:26:45,061 - DEBUG - ObjectPath [120 110 114 99 78 8 66 55 44 40] ipv4-addr:src_ip
+2019-10-08 14:26:45,062 - DEBUG - String [240 232 125 110 114 99 78 8 66 55 44 40] '192.178.2.2'
+2019-10-08 14:26:45,062 - DEBUG - OrderableLiteral [232 125 110 114 99 78 8 66 55 44 40] '192.178.2.2'
+2019-10-08 14:26:45,062 - DEBUG - PrimitiveLiteral [125 110 114 99 78 8 66 55 44 40] '192.178.2.2'
+2019-10-08 14:26:45,062 - DEBUG - PropTestEqual [110 114 99 78 8 66 55 44 40] ipv4-addr:src_ip='192.178.2.2' | stack=[CombinedComparisonExpression(ComparisonExpression(ipv4-addr:dst_ip ComparisonComparators.Equal 171.5.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:os_user ComparisonComparators.Equal john) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))))))), 'ipv4-addr:src_ip', '192.178.2.2']
+2019-10-08 14:26:45,064 - DEBUG - ComparisonExpressionAnded [99 78 8 66 55 44 40] x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2'
+2019-10-08 14:26:45,065 - DEBUG - ObservationExpressionSimple [8 66 55 44 40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']
+2019-10-08 14:26:45,065 - DEBUG - Current Parser Stack: []
+2019-10-08 14:26:45,066 - DEBUG - ObservationExpressionStartStop [66 55 44 40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'
+2019-10-08 14:26:45,069 - DEBUG - ObservationExpressionAnd [55 44 40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'
+2019-10-08 14:26:45,070 - DEBUG - ObservationExpressionOr [44 40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'
+2019-10-08 14:26:45,071 - DEBUG - ObservationExpressions [40] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'
+2019-10-08 14:26:45,072 - DEBUG - Pattern [] [x_Guardium:datacategory='activity'ANDx_Guardium:start='2018-06-01T00:00:00.123Z'ANDx_Guardium:end='2019-05-01T01:11:11.123Z'ANDx_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'ANDuser-account:db_user='admin'ANDuser-account:os_user='john'ANDipv4-addr:dst_ip='171.5.2.2'ANDipv4-addr:src_ip='192.178.2.2']STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z'<EOF>
+2019-10-08 14:26:46,899 - DEBUG - Pattern[ObservationExpression(CombinedComparisonExpression(ComparisonExpression(ipv4-addr:src_ip ComparisonComparators.Equal 192.178.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(ipv4-addr:dst_ip ComparisonComparators.Equal 171.5.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:os_user ComparisonComparators.Equal john) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))))))))) StartStopQualifier(STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z', start=t'2016-06-01T00:00:00.123Z', stop=t'2019-06-01T01:11:11.123Z')]
+2019-10-08 14:26:51,216 - DEBUG - Calling Transform query: [x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'
+2019-10-08 14:26:53,297 - INFO - Converting STIX2 Pattern to data source query
+2019-10-08 14:26:53,297 - DEBUG - Entered translate_pattern------
+Translate Pattern: Pattern[ObservationExpression(CombinedComparisonExpression(ComparisonExpression(ipv4-addr:src_ip ComparisonComparators.Equal 192.178.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(ipv4-addr:dst_ip ComparisonComparators.Equal 171.5.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:os_user ComparisonComparators.Equal john) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))))))))) StartStopQualifier(STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z', start=t'2016-06-01T00:00:00.123Z', stop=t'2019-06-01T01:11:11.123Z')]
+2019-10-08 14:26:53,297 - DEBUG - Data model mapping: <stix_shifter.stix_translation.src.modules.guardium.data_mapping.DataMapper object at 0x1035ac128>
+2019-10-08 14:26:53,308 - DEBUG - Parsed_stix: {'parsed_stix': [{'attribute': 'ipv4-addr:src_ip', 'comparison_operator': '=', 'value': '192.178.2.2'}, {'attribute': 'ipv4-addr:dst_ip', 'comparison_operator': '=', 'value': '171.5.2.2'}, {'attribute': 'user-account:os_user', 'comparison_operator': '=', 'value': 'john'}, {'attribute': 'user-account:db_user', 'comparison_operator': '=', 'value': 'admin'}, {'attribute': 'x_Guardium:remotesource', 'comparison_operator': '=', 'value': 'guardiumv10col01.guardiumlabservices.ibm.com'}, {'attribute': 'x_Guardium:end', 'comparison_operator': '=', 'value': '2019-05-01T01:11:11.123Z'}, {'attribute': 'x_Guardium:start', 'comparison_operator': '=', 'value': '2018-06-01T00:00:00.123Z'}, {'attribute': 'x_Guardium:datacategory', 'comparison_operator': '=', 'value': 'activity'}], 'start_time': 1464739200123, 'end_time': 1559351471123}
+2019-10-08 14:26:53,308 - DEBUG - Options supplied to query Constructer - translate pattern --
+2019-10-08 14:26:53,308 - DEBUG - {'result_limit': 10000, 'timerange': 5}
+2019-10-08 14:26:53,309 - DEBUG - Parse Expression: patten --->
+2019-10-08 14:26:53,309 - DEBUG - Pattern[ObservationExpression(CombinedComparisonExpression(ComparisonExpression(ipv4-addr:src_ip ComparisonComparators.Equal 192.178.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(ipv4-addr:dst_ip ComparisonComparators.Equal 171.5.2.2) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:os_user ComparisonComparators.Equal john) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(user-account:db_user ComparisonComparators.Equal admin) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:remotesource ComparisonComparators.Equal guardiumv10col01.guardiumlabservices.ibm.com) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:end ComparisonComparators.Equal 2019-05-01T01:11:11.123Z) ComparisonExpressionOperators.And CombinedComparisonExpression(ComparisonExpression(x_Guardium:start ComparisonComparators.Equal 2018-06-01T00:00:00.123Z) ComparisonExpressionOperators.And ComparisonExpression(x_Guardium:datacategory ComparisonComparators.Equal activity))))))))) StartStopQualifier(STARTt'2016-06-01T00:00:00.123Z'STOPt'2019-06-01T01:11:11.123Z', start=t'2016-06-01T00:00:00.123Z', stop=t'2019-06-01T01:11:11.123Z')]
+2019-10-08 14:26:53,309 - DEBUG - Comparison String: CLIENTIP = '192.178.2.2'
+2019-10-08 14:26:53,310 - DEBUG - Comparison String: SERVERIP = '171.5.2.2'
+2019-10-08 14:26:53,310 - DEBUG - Comparison String: OSUSER = 'john'
+2019-10-08 14:26:53,310 - DEBUG - Comparison String: DBUSERNAME = 'admin'
+2019-10-08 14:26:53,310 - DEBUG - Comparison String: REMOTE_SOURCE = 'guardiumv10col01.guardiumlabservices.ibm.com'
+2019-10-08 14:26:53,311 - DEBUG - Comparison String: QUERY_TO_DATE = '2019-05-01 01:11:11'
+2019-10-08 14:26:53,311 - DEBUG - Comparison String: QUERY_FROM_DATE = '2018-06-01 00:00:00'
+2019-10-08 14:26:53,311 - DEBUG - Comparison String: datacategory = 'activity'
+2019-10-08 14:26:53,312 - INFO - REPORT DEF as read
+2019-10-08 14:26:53,312 - INFO - {'session': {'--IBM SC Session Details': {'reportName': '--IBM SC Session Details', 'indexFrom': '0', 'fetchSize': '1000', 'sortType': 'asc', 'reportParameter': {'QUERY_FROM_DATE': {'info': 'START', 'default': '1970-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'QUERY_TO_DATE': {'info': 'STOP', 'default': '2019-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'SHOW_ALIASES': {'info': 'None', 'default': 'TRUE'}, 'REMOTE_SOURCE': {'info': 'None', 'default': '%'}, 'CLIENTIP': {'info': 'map', 'default': '%'}, 'SERVERIP': {'info': 'map', 'default': '%'}, 'DBUSERNAME': {'info': 'map', 'default': '%'}, 'SERVICENAME': {'info': 'map', 'default': '%'}, 'DATABASENAME': {'info': 'map', 'default': '%'}}}}, 'activity': {'--IBM SC Activity Details': {'reportName': '--IBM SC Activity Details', 'indexFrom': '0', 'fetchSize': '1000', 'sortType': 'asc', 'reportParameter': {'QUERY_FROM_DATE': {'info': 'START', 'default': '1970-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'QUERY_TO_DATE': {'info': 'STOP', 'default': '2019-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'SHOW_ALIASES': {'info': 'None', 'default': 'TRUE'}, 'REMOTE_SOURCE': {'info': 'None', 'default': '%'}, 'CLIENTIP': {'info': 'map', 'default': '%'}, 'SERVERIP': {'info': 'map', 'default': '%'}, 'DBUSERNAME': {'info': 'map', 'default': '%'}, 'SERVICENAME': {'info': 'map', 'default': '%'}, 'OSUSER': {'info': 'map', 'default': '%'}, 'DATABASENAME': {'info': 'map', 'default': '%'}}}}, 'exceptions': {'--IBM SC Exception Details': {'reportName': '--IBM SC Exception Details', 'indexFrom': '0', 'fetchSize': '1000', 'sortType': 'asc', 'reportParameter': {'QUERY_FROM_DATE': {'info': 'START', 'default': '1970-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'QUERY_TO_DATE': {'info': 'STOP', 'default': '2019-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'SHOW_ALIASES': {'info': 'None', 'default': 'TRUE'}, 'REMOTE_SOURCE': {'info': 'None', 'default': '%'}, 'CLIENTIP': {'info': 'map', 'default': '%'}, 'SERVERIP': {'info': 'map', 'default': '%'}, 'DBUSERNAME': {'info': 'map', 'default': '%'}, 'SERVICENAME': {'info': 'map', 'default': '%'}, 'OSUSER': {'info': 'map', 'default': '%'}, 'DATABASENAME': {'info': 'map', 'default': '%'}, 'ERRORCODE': {'info': 'map', 'default': '%'}}}}}
+2019-10-08 14:26:53,313 - DEBUG - reportCall -->
+2019-10-08 14:26:53,314 - DEBUG - CLIENTIP = '192.178.2.2' AND (SERVERIP = '171.5.2.2' AND (OSUSER = 'john' AND (DBUSERNAME = 'admin' AND (REMOTE_SOURCE = 'guardiumv10col01.guardiumlabservices.ibm.com' AND (QUERY_TO_DATE = '2019-05-01 01:11:11' AND (QUERY_FROM_DATE = '2018-06-01 00:00:00' AND datacategory = 'activity')))))) START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'
+2019-10-08 14:26:53,319 - DEBUG - reportCall converted to Json -->
+2019-10-08 14:26:53,320 - DEBUG - [
+    {
+        "CLIENTIP": "192.178.2.2"
+    },
+    {
+        "SERVERIP": "171.5.2.2"
+    },
+    {
+        "OSUSER": "john"
+    },
+    {
+        "DBUSERNAME": "admin"
+    },
+    {
+        "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com"
+    },
+    {
+        "QUERY_TO_DATE": "2019-05-01 01:11:11"
+    },
+    {
+        "QUERY_FROM_DATE": "2018-06-01 00:00:00"
+    },
+    {
+        "datacategory": "activity"
+    },
+    {
+        "START": "2016-06-01T00:00:00.123"
+    },
+    {
+        "STOP": "2019-06-01T01:11:11.123Z"
+    }
+]
+2019-10-08 14:26:53,326 - DEBUG - ----- Final Combination of report parameters to support & construct the report search HEADER -->
+2019-10-08 14:26:53,327 - DEBUG - [
+    {
+        "CLIENTIP": "192.178.2.2",
+        "SERVERIP": "171.5.2.2",
+        "OSUSER": "john",
+        "DBUSERNAME": "admin",
+        "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com",
+        "QUERY_TO_DATE": "2019-05-01 01:11:11",
+        "QUERY_FROM_DATE": "2018-06-01 00:00:00",
+        "datacategory": "activity",
+        "START": "2016-06-01T00:00:00.123",
+        "STOP": "2019-06-01T01:11:11.123Z"
+    }
+]
+2019-10-08 14:26:53,328 - INFO - -------- Get Report Params for Index: 0 of 1----
+ Data Category
+2019-10-08 14:26:53,329 - INFO - activity
+2019-10-08 14:26:53,329 - INFO - -------- Substitute Params Passed ------
+ reportDefs
+2019-10-08 14:26:53,330 - INFO - {'--IBM SC Activity Details': {'reportName': '--IBM SC Activity Details', 'indexFrom': '0', 'fetchSize': '1000', 'sortType': 'asc', 'reportParameter': {'QUERY_FROM_DATE': {'info': 'START', 'default': '1970-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'QUERY_TO_DATE': {'info': 'STOP', 'default': '2019-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'SHOW_ALIASES': {'info': 'None', 'default': 'TRUE'}, 'REMOTE_SOURCE': {'info': 'None', 'default': '%'}, 'CLIENTIP': {'info': 'map', 'default': '%'}, 'SERVERIP': {'info': 'map', 'default': '%'}, 'DBUSERNAME': {'info': 'map', 'default': '%'}, 'SERVICENAME': {'info': 'map', 'default': '%'}, 'OSUSER': {'info': 'map', 'default': '%'}, 'DATABASENAME': {'info': 'map', 'default': '%'}}}}
+2019-10-08 14:26:53,330 - INFO - ---- REPORT PROCESSING START ---
+
+2019-10-08 14:26:53,330 - INFO - processing ... --IBM SC Activity Details
+
+2019-10-08 14:26:53,330 - DEBUG - {'reportName': '--IBM SC Activity Details', 'indexFrom': '0', 'fetchSize': '1000', 'sortType': 'asc', 'reportParameter': {'QUERY_FROM_DATE': {'info': 'START', 'default': '1970-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'QUERY_TO_DATE': {'info': 'STOP', 'default': '2019-07-01T00:00:10.000Z', 'transformer': 'TimestampToGuardium'}, 'SHOW_ALIASES': {'info': 'None', 'default': 'TRUE'}, 'REMOTE_SOURCE': {'info': 'None', 'default': '%'}, 'CLIENTIP': {'info': 'map', 'default': '%'}, 'SERVERIP': {'info': 'map', 'default': '%'}, 'DBUSERNAME': {'info': 'map', 'default': '%'}, 'SERVICENAME': {'info': 'map', 'default': '%'}, 'OSUSER': {'info': 'map', 'default': '%'}, 'DATABASENAME': {'info': 'map', 'default': '%'}}}
+2019-10-08 14:26:53,348 - INFO - processing ... Completed: --IBM SC Activity Details
+
+2019-10-08 14:26:53,348 - DEBUG - {'reportName': '--IBM SC Activity Details', 'indexFrom': '0', 'fetchSize': '1000', 'sortType': 'asc', 'reportParameter': {'QUERY_FROM_DATE': '2016-06-01 00:00:00', 'QUERY_TO_DATE': '2019-06-01 01:11:11', 'SHOW_ALIASES': 'TRUE', 'REMOTE_SOURCE': 'guardiumv10col01.guardiumlabservices.ibm.com', 'CLIENTIP': '192.178.2.2', 'SERVERIP': '171.5.2.2', 'DBUSERNAME': 'admin', 'SERVICENAME': '%', 'OSUSER': 'john', 'DATABASENAME': '%'}}
+2019-10-08 14:26:53,348 - INFO - -------- End Substitute Params Passed ------
+
+2019-10-08 14:26:53,348 - INFO - -------- Reports In Query for Index: 0-----
+
+2019-10-08 14:26:53,348 - INFO - -------- End Get Report Params ------
+
+2019-10-08 14:26:53,349 - DEBUG - Report params Header: 
+2019-10-08 14:26:53,349 - DEBUG - [
+    {
+        "reportName": "--IBM SC Activity Details",
+        "indexFrom": "0",
+        "fetchSize": "1000",
+        "sortType": "asc",
+        "reportParameter": {
+            "QUERY_FROM_DATE": "2016-06-01 00:00:00",
+            "QUERY_TO_DATE": "2019-06-01 01:11:11",
+            "SHOW_ALIASES": "TRUE",
+            "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com",
+            "CLIENTIP": "192.178.2.2",
+            "SERVERIP": "171.5.2.2",
+            "DBUSERNAME": "admin",
+            "SERVICENAME": "%",
+            "OSUSER": "john",
+            "DATABASENAME": "%"
+        }
+    }
+]
+2019-10-08 14:26:53,350 - DEBUG - Out from transform query: [{'reportName': '--IBM SC Activity Details', 'indexFrom': '0', 'fetchSize': '1000', 'sortType': 'asc', 'reportParameter': {'QUERY_FROM_DATE': '2016-06-01 00:00:00', 'QUERY_TO_DATE': '2019-06-01 01:11:11', 'SHOW_ALIASES': 'TRUE', 'REMOTE_SOURCE': 'guardiumv10col01.guardiumlabservices.ibm.com', 'CLIENTIP': '192.178.2.2', 'SERVERIP': '171.5.2.2', 'DBUSERNAME': 'admin', 'SERVICENAME': '%', 'OSUSER': 'john', 'DATABASENAME': '%'}}]
+2019-10-08 14:26:53,354 - INFO - Run ended.

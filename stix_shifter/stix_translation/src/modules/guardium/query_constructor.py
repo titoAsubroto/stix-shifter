@@ -30,7 +30,7 @@ class QueryStringPatternTranslator:
     # Change comparator values to match with supported data source operators
     comparator_lookup = {
         ComparisonExpressionOperators.And: "AND",
-#        ComparisonExpressionOperators.Or: "OR",
+        ComparisonExpressionOperators.Or: "OR",
 #        ComparisonComparators.GreaterThan: ">",
 #        ComparisonComparators.GreaterThanOrEqual: ">=",
 #        ComparisonComparators.LessThan: "<",
@@ -473,7 +473,7 @@ class QueryStringPatternTranslator:
         return self._parse_expression(pattern)
 
 
-def translate_pattern(pattern: Pattern, data_model_mapping):
+def translate_pattern(pattern: Pattern, data_model_mapping, options):
     #print("\nTranslate Pattern: ")
     #print(pattern)
     logging.debug("Entered translate_pattern------\nTranslate Pattern: " + str(pattern))
@@ -484,6 +484,8 @@ def translate_pattern(pattern: Pattern, data_model_mapping):
     parsed_stix = parse_stix(pattern,timerange)
 
     logging.debug("Parsed_stix: " + str(parsed_stix))
+    logging.debug("Options supplied to query Constructer - translate pattern --")
+    logging.debug(options)
 #
     guardiumQueryTranslator = QueryStringPatternTranslator(pattern, data_model_mapping)
     reportCall = guardiumQueryTranslator.translated

@@ -139,3 +139,59 @@ Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x
 
 ---------Results Obtained: 
 Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"queries": "[{"reportName": "--IBM SC Activity Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com", "CLIENTIP": "192.178.2.2", "SERVERIP": "171.5.2.2", "DBUSERNAME": "admin", "SERVICENAME": "%", "OSUSER": "john", "DATABASENAME": "%"}}]"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"queries": "[{"reportName": "--IBM SC Activity Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com", "CLIENTIP": "192.178.2.2", "SERVERIP": "171.5.2.2", "DBUSERNAME": "admin", "SERVICENAME": "%", "OSUSER": "john", "DATABASENAME": "%"}}]"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"queries": "[{"reportName": "--IBM SC Activity Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com", "CLIENTIP": "192.178.2.2", "SERVERIP": "171.5.2.2", "DBUSERNAME": "admin", "SERVICENAME": "%", "OSUSER": "john", "DATABASENAME": "%"}}]"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'session' OR x_Guardium:start = '2018-06-01T00:00:00.123Z' OR x_Guardium:end = '2019-05-01T01:11:11.123Z' OR x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"success": False, "code": "invalid_parameter", "error": "Error when converting STIX pattern to data source query"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'session' OR x_Guardium:start = '2018-06-01T00:00:00.123Z' OR x_Guardium:end = '2019-05-01T01:11:11.123Z' OR x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"queries": "[{"reportName": "--IBM SC Session Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "DATABASENAME": "%"}}, {"reportName": "--IBM SC Exception Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "OSUSER": "%", "DATABASENAME": "%", "ERRORCODE": "%"}}, {"reportName": "--IBM SC Activity Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "OSUSER": "%", "DATABASENAME": "%"}}, {"reportName": "--IBM SC Session Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "%", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "DATABASENAME": "%"}}, {"reportName": "--IBM SC Exception Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "%", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "OSUSER": "%", "DATABASENAME": "%", "ERRORCODE": "%"}}, {"reportName": "--IBM SC Activity Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "%", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "OSUSER": "%", "DATABASENAME": "%"}}, {"reportName": "--IBM SC Session Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "%", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "DATABASENAME": "%"}}, {"reportName": "--IBM SC Exception Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "%", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "OSUSER": "%", "DATABASENAME": "%", "ERRORCODE": "%"}}, {"reportName": "--IBM SC Activity Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "%", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "OSUSER": "%", "DATABASENAME": "%"}}, {"reportName": "--IBM SC Session Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "%", "CLIENTIP": "%", "SERVERIP": "%", "DBUSERNAME": "%", "SERVICENAME": "%", "DATABASENAME": "%"}}]"}
+
+ New test RUN --------> translate Output for query -----------
+args passed: 
+Namespace(command='translate', data="[x_Guardium:datacategory = 'activity' AND x_Guardium:start = '2018-06-01T00:00:00.123Z' AND x_Guardium:end = '2019-05-01T01:11:11.123Z' AND x_Guardium:remotesource='guardiumv10col01.guardiumlabservices.ibm.com' AND user-account:db_user='admin' AND user-account:os_user='john' AND ipv4-addr:dst_ip='171.5.2.2' AND ipv4-addr:src_ip='192.178.2.2'] START t'2016-06-01T00:00:00.123Z' STOP t'2019-06-01T01:11:11.123Z'", data_mapper=None, data_source='{}', module='guardium', options=None, recursion_limit=None, stix_validator=False, translate_type='query')
+
+---------Results Obtained: 
+Query Data: {"queries": "[{"reportName": "--IBM SC Activity Details", "indexFrom": "0", "fetchSize": "1000", "sortType": "asc", "reportParameter": {"QUERY_FROM_DATE": "2016-06-01 00:00:00", "QUERY_TO_DATE": "2019-06-01 01:11:11", "SHOW_ALIASES": "TRUE", "REMOTE_SOURCE": "guardiumv10col01.guardiumlabservices.ibm.com", "CLIENTIP": "192.178.2.2", "SERVERIP": "171.5.2.2", "DBUSERNAME": "admin", "SERVICENAME": "%", "OSUSER": "john", "DATABASENAME": "%"}}]"}
