@@ -29,21 +29,14 @@ class JSONToStix(BaseResultTranslator):
         if(not self.mapping):
             map_file = open(self.default_mapping_file_path).read()
             map_data = json.loads(map_file)
-            logging.debug("\nmapfile: ")
-            logging.debug(map_data)
+            logging.debug("\nmapfile: " + str(map_data))
         else:
             map_data = self.mapping
-            logging.debug("self.mapping: ")
-            logging.debug(mapfile)
+            logging.debug("self.mapping: " + str(map_data))
 
-        logging.debug("data_source (input): ")
-        logging.debug(data_source)
-        logging.debug("data_source (Json): ")
-        logging.debug(data_source)
-        logging.debug("data (input): ")
-        logging.debug(data)
-        logging.debug("json_data: ")
-        logging.debug(json_data)
+        logging.debug("data_source: " + str(data_source))
+        logging.debug("data (input): " + str(data))
+        logging.debug("json_data: " + str(json_data))
         results = json_to_stix_translator.convert_to_stix(data_source, map_data,
                                                           json_data, transformers.get_all_transformers(), options, self.callback)
 

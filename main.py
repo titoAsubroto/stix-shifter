@@ -343,10 +343,8 @@ def __main__():
         print(result)
         print("\n\nSuccess: " + str(result["success"]))
         print("Search ID: " + str(result["search_id"]))
-        print("\nData: ")
-        print(json.dumps(result["data"], indent=4))
-
-        print(result)
+        logging.info("\nData: ")
+        logging.info(json.dumps(result["data"], indent=4))
         logging.info("Success: " + str(result["success"]))
         logging.info("Search ID: " + str(result["search_id"]))
         # log result Output
@@ -393,7 +391,13 @@ def transmit(args):
     logging.debug('Connection: ' + args.connection)
     connection_dict = json.loads(args.connection)
     logging.debug(connection_dict)
-    cert_str = connection_dict.get("cert")
+    cert_str = connection_dict.get("cert", None)
+    if cert_str == None and args.module == 'guardium':
+        cert_str = "./stix_shifter/stix_transmission/src/modules/guardium/certs/guardiumlabservicesibmcom.crt"
+#
+    else:
+        cert_str = ""
+#
     if (cert_str.find("--BEGIN CERTIFICATE") < 0):
         if (not cert_str.strip()):
             connection_dict["cert"] = ""

@@ -1,0 +1,1565 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.6.5, pytest-3.5.0, py-1.5.3, pluggy-0.6.0
+rootdir: /Users/subroto/Documents/dataInMac/github/stix-shifter, inifile:
+plugins: cov-2.5.1
+collected 352 items
+
+tests/bigfix_tests/test_bigfix_results_to_stix.py ...                    [  0%]
+tests/bigfix_tests/test_stix_to_relevance.py ..                          [  1%]
+tests/csa_json_to_stix/test_class.py ....                                [  2%]
+tests/csa_stix_to_sql/test_class.py .................                    [  7%]
+tests/stix_translation/test_car_json_to_stix.py ....                     [  8%]
+tests/stix_translation/test_carbonblack_json_to_stix.py ....             [  9%]
+tests/stix_translation/test_carbonblack_stix_to_cb.py .................  [ 14%]
+tests/stix_translation/test_elastic_ecs_json_to_stix.py .........        [ 17%]
+tests/stix_translation/test_elastic_ecs_stix_to_query.py FFFFFFFFFFFFFFF [ 21%]
+FFFFFFFFFFFFFFF                                                          [ 25%]
+tests/stix_translation/test_qradar_json_to_stix.py ............          [ 28%]
+tests/stix_translation/test_splunk_json_to_stix.py .........             [ 31%]
+tests/stix_translation/test_splunk_stix_to_spl.py ....................   [ 37%]
+tests/stix_translation/test_stix_parsing.py ..                           [ 37%]
+tests/stix_translation/test_translation_input.py ..                      [ 38%]
+tests/stix_translation/patterns/test_analytic_translator.py ............ [ 41%]
+.....................................................                    [ 56%]
+tests/stix_translation/patterns/test_miscellaneous_tests.py .            [ 57%]
+tests/stix_translation/patterns/test_web_api.py ........................ [ 63%]
+........................                                                 [ 70%]
+tests/stix_translation/qradar_stix_to_aql/test_class.py ................ [ 75%]
+.................                                                        [ 80%]
+tests/stix_transmission/test_async_dummy.py .....                        [ 81%]
+tests/stix_transmission/test_bigfix.py .......................           [ 88%]
+tests/stix_transmission/test_carbonblack.py FF.FFFF.F                    [ 90%]
+tests/stix_transmission/test_elastic_ecs.py .......                      [ 92%]
+tests/stix_transmission/test_qradar.py ......F                           [ 94%]
+tests/stix_transmission/test_synchronous_dummy.py ...                    [ 95%]
+tests/stix_transmission/splunk/test_class.py ................            [100%]
+
+=================================== FAILURES ===================================
+________ TestStixtoQuery.test_combined_observations_with_one_qualifier _________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_combined_observations_with_one_qualifier>
+
+    def test_combined_observations_with_one_qualifier(self):
+        start_time = "t'2019-04-01T01:30:00.123Z'"
+        stop_time = "t'2019-04-01T02:20:00.123Z'"
+        stix_pattern = "([network-traffic:src_port = 37020 AND user-account:user_id = 'root'] OR [ipv4-addr:value = '192.168.122.83']) START {} STOP {}".format(start_time, stop_time)
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'][-1] = _remove_timestamp_from_query(translated_query['queries'][-1])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:228: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+______________________ TestStixtoQuery.test_complex_query ______________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_complex_query>
+
+    def test_complex_query(self):
+        stix_pattern = "[network-traffic:protocols[*] LIKE 'ipv_' AND network-traffic:src_port>443] START t'2019-04-11T08:42:39.297Z' STOP t'2019-04-11T08:43:39.297Z' OR [user-account:user_id = '_' AND artifact:payload_bin LIKE '%'] START t'2019-04-11T14:35:44.011Z' STOP t'2019-04-21T16:35:44.011Z' AND [process:pid<700 OR url:value LIKE '%' AND process:creator_user_ref.user_id IN ('root','admin')] START t'2019-04-11T14:35:44.011Z' STOP t'2019-04-17T14:35:44.011Z'"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+        test_query = ['(source.port:>443 OR client.port:>443) AND (network.transport : ipv? OR network.type : ipv? OR network.protocol : ipv?) AND (@timestamp:["2019-04-11T08:42:39.297Z" TO "2019-04-11T08:43:39.297Z"])',
+                      'event.original : * AND user.name : "_" AND (@timestamp:["2019-04-11T14:35:44.011Z" TO "2019-04-21T16:35:44.011Z"])', '(user.name : ("root" OR "admin") AND url.original : *) OR process.pid:<700 AND (@timestamp:["2019-04-11T14:35:44.011Z" TO "2019-04-17T14:35:44.011Z"])']
+>       assert translated_query['queries'] == test_query
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:95: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+__________________ TestStixtoQuery.test_file_not_equal_query ___________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_file_not_equal_query>
+
+    def test_file_not_equal_query(self):
+        stix_pattern = "[file:name != 'some_file.exe']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:100: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_______________________ TestStixtoQuery.test_file_query ________________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_file_query>
+
+    def test_file_query(self):
+        stix_pattern = "[file:name = 'some_file.exe']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:86: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+__________________ TestStixtoQuery.test_invalid_stix_pattern ___________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_invalid_stix_pattern>
+
+    def test_invalid_stix_pattern(self):
+        stix_pattern = "[not_a_valid_pattern]"
+        result = translation.translate('elastic_ecs', 'query', '{}', stix_pattern, {'validate_pattern': 'true'})
+        assert result['success'] == False
+>       assert ErrorCode.TRANSLATION_STIX_VALIDATION.value == result['code']
+E       AssertionError: assert 'invalid_parameter' == 'not_implemented'
+E         - invalid_parameter
+E         + not_implemented
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:185: AssertionError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_______________________ TestStixtoQuery.test_ipv4_query ________________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_ipv4_query>
+
+    def test_ipv4_query(self):
+        stix_pattern = "[ipv4-addr:value = '192.168.122.83' OR ipv4-addr:value = '192.168.122.84']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:44: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_______________________ TestStixtoQuery.test_ipv6_query ________________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_ipv6_query>
+
+    def test_ipv6_query(self):
+        stix_pattern = "[ipv6-addr:value = '3001:0:0:0:0:0:0:2']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:51: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+____________________ TestStixtoQuery.test_mac_address_query ____________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_mac_address_query>
+
+    def test_mac_address_query(self):
+        stix_pattern = "[mac-addr:value = '00-00-5E-00-53-00']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:65: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_____________________ TestStixtoQuery.test_match_operator ______________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_match_operator>
+
+    def test_match_operator(self):
+        stix_pattern = "[artifact:payload_bin MATCHES '1*']"  # Elastic search does not support PCRE
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:263: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_______________ TestStixtoQuery.test_network_traffic_in_operator _______________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_network_traffic_in_operator>
+
+    def test_network_traffic_in_operator(self):
+        stix_pattern = "[network-traffic:protocols[*] IN ('tcp','dns')]"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:149: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_________________ TestStixtoQuery.test_network_traffic_queries _________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_network_traffic_queries>
+
+    def test_network_traffic_queries(self):
+        stix_pattern = "[network-traffic:src_port = 12345 OR network-traffic:protocols[*] LIKE '_n%']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:156: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+______________________ TestStixtoQuery.test_port_queries _______________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_port_queries>
+
+    def test_port_queries(self):
+        stix_pattern = "[network-traffic:src_port = 12345 OR network-traffic:dst_port = 23456]"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:107: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_____________ TestStixtoQuery.test_port_queries_greaterthanorequal _____________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_port_queries_greaterthanorequal>
+
+    def test_port_queries_greaterthanorequal(self):
+        stix_pattern = "[network-traffic:src_port >=443]"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:135: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+____________ TestStixtoQuery.test_port_queries_lessthan_greaterthan ____________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_port_queries_lessthan_greaterthan>
+
+    def test_port_queries_lessthan_greaterthan(self):
+        stix_pattern = "[network-traffic:src_port > 12345 AND network-traffic:dst_port < 23456]"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:114: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+______________ TestStixtoQuery.test_port_queries_lessthanorequal _______________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_port_queries_lessthanorequal>
+
+    def test_port_queries_lessthanorequal(self):
+        stix_pattern = "[network-traffic:src_port <=443]"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:142: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_______________ TestStixtoQuery.test_port_queries_src_ref_equal ________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_port_queries_src_ref_equal>
+
+    def test_port_queries_src_ref_equal(self):
+        stix_pattern = "[network-traffic:src_ref.value = '127.0.0.1']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:121: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+______________ TestStixtoQuery.test_port_queries_src_ref_notequal ______________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_port_queries_src_ref_notequal>
+
+    def test_port_queries_src_ref_notequal(self):
+        stix_pattern = "[network-traffic:src_ref.value != '127.0.0.1']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:128: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+__________________ TestStixtoQuery.test_process_created_equal __________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_process_created_equal>
+
+    def test_process_created_equal(self):
+        stix_pattern = "[process:created='2019-04-10T11:34:05.500Z']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:219: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_______________ TestStixtoQuery.test_process_created_greaterthan _______________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_process_created_greaterthan>
+
+    def test_process_created_greaterthan(self):
+        stix_pattern = "[process:created>'2019-04-10T11:34:05.500Z']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:191: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+___________ TestStixtoQuery.test_process_created_greaterthan_orequal ___________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_process_created_greaterthan_orequal>
+
+    def test_process_created_greaterthan_orequal(self):
+        stix_pattern = "[process:created>='2019-04-10T11:34:05.500Z']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:205: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+________________ TestStixtoQuery.test_process_created_lessthan _________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_process_created_lessthan>
+
+    def test_process_created_lessthan(self):
+        stix_pattern = "[process:created<'2019-04-10T11:34:05.500Z']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:198: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+____________ TestStixtoQuery.test_process_created_lessthan_orequal _____________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_process_created_lessthan_orequal>
+
+    def test_process_created_lessthan_orequal(self):
+        stix_pattern = "[process:created<='2019-04-10T11:34:05.500Z']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:212: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+ TestStixtoQuery.test_query_from_multiple_comparison_expressions_joined_by_AND _
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_query_from_multiple_comparison_expressions_joined_by_AND>
+
+    def test_query_from_multiple_comparison_expressions_joined_by_AND(self):
+        stix_pattern = "[(url:value = 'www.example.com' OR url:value = 'www.test.com') AND mac-addr:value = '00-00-5E-00-53-00']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:79: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+ TestStixtoQuery.test_query_from_multiple_observation_expressions_joined_by_AND 
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_query_from_multiple_observation_expressions_joined_by_AND>
+
+    def test_query_from_multiple_observation_expressions_joined_by_AND(self):
+        stix_pattern = "[url:value = 'www.example.com'] AND [mac-addr:value = '00-00-5E-00-53-00']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:72: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+______ TestStixtoQuery.test_start_stop_qualifiers_with_three_observations ______
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_start_stop_qualifiers_with_three_observations>
+
+    def test_start_stop_qualifiers_with_three_observations(self):
+        start_time_01 = "t'2019-04-01T00:00:00.123Z'"
+        stop_time_01 = "t'2019-04-01T01:11:11.456Z'"
+        start_time_02 = "t'2019-04-07T02:22:22.789Z'"
+        stop_time_02 = "t'2019-04-07T03:33:33.012Z'"
+        stix_pattern = "[network-traffic:src_port = 37020 AND network-traffic:dst_port = 635] START {} STOP {} OR [url:value = 'www.example.com'] OR [ipv4-addr:value = '333.333.333.0'] START {} STOP {}".format(
+            start_time_01, stop_time_01, start_time_02, stop_time_02)
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'][-1] = _remove_timestamp_from_query(translated_query['queries'][-1])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:254: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+_______ TestStixtoQuery.test_start_stop_qualifiers_with_two_observations _______
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_start_stop_qualifiers_with_two_observations>
+
+    def test_start_stop_qualifiers_with_two_observations(self):
+        start_time_01 = "t'2019-04-01T01:30:00.123Z'"
+        stop_time_01 = "t'2019-04-01T02:20:00.123Z'"
+        start_time_02 = "t'2019-04-01T03:55:00.123Z'"
+        stop_time_02 = "t'2019-04-01T04:30:24.743Z'"
+        stix_pattern = "[network-traffic:src_port = 37020 AND user-account:user_id = 'root'] START {} STOP {} OR [ipv4-addr:value = '192.168.122.83'] START {} STOP {}".format(start_time_01, stop_time_01, start_time_02, stop_time_02)
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+        test_query = ['user.name : "root" AND (source.port : "37020" OR client.port : "37020") AND (@timestamp:["2019-04-01T01:30:00.123Z" TO "2019-04-01T02:20:00.123Z"])',
+                      '(source.ip : "192.168.122.83" OR destination.ip : "192.168.122.83" OR client.ip : "192.168.122.83" OR server.ip : "192.168.122.83") AND (@timestamp:["2019-04-01T03:55:00.123Z" TO "2019-04-01T04:30:24.743Z"])']
+>       assert len(translated_query['queries']) == 2
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:243: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+__________ TestStixtoQuery.test_unmapped_attribute_handling_with_AND ___________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_unmapped_attribute_handling_with_AND>
+
+    def test_unmapped_attribute_handling_with_AND(self):
+        stix_pattern = "[url:value = 'http://www.testaddress.com' AND unmapped:attribute = 'something']"
+        result = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+        assert result['success'] == False
+>       assert ErrorCode.TRANSLATION_MAPPING_ERROR.value == result['code']
+E       AssertionError: assert 'mapping_error' == 'not_implemented'
+E         - mapping_error
+E         + not_implemented
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:171: AssertionError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+___________ TestStixtoQuery.test_unmapped_attribute_handling_with_OR ___________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_unmapped_attribute_handling_with_OR>
+
+    def test_unmapped_attribute_handling_with_OR(self):
+        stix_pattern = "[url:value = 'http://www.testaddress.com' OR unmapped:attribute = 'something']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:163: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+________________________ TestStixtoQuery.test_url_query ________________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_url_query>
+
+    def test_url_query(self):
+        stix_pattern = "[url:value = 'http://www.testaddress.com']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:58: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+___________________ TestStixtoQuery.test_user_account_query ____________________
+
+self = <tests.stix_translation.test_elastic_ecs_stix_to_query.TestStixtoQuery testMethod=test_user_account_query>
+
+    def test_user_account_query(self):
+        stix_pattern = "[user-account:user_id = 'root']"
+        translated_query = translation.translate('elastic_ecs', 'query', '{}', stix_pattern)
+>       translated_query['queries'] = _remove_timestamp_from_query(translated_query['queries'])
+E       KeyError: 'queries'
+
+tests/stix_translation/test_elastic_ecs_stix_to_query.py:177: KeyError
+----------------------------- Captured stdout call -----------------------------
+in Translate method
+received exception => UnsupportedDataSourceException: elastic_ecs is an unsupported data source.
+______________ TestCarbonBlackConnection.test_bad_token_response _______________
+
+self = <tests.stix_transmission.test_carbonblack.TestCarbonBlackConnection testMethod=test_bad_token_response>
+mock_requests_response = <function get at 0x10a577158>
+
+    def test_bad_token_response(self, mock_requests_response):
+        mocked_return_value = """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+    <title>401 Unauthorized</title>
+    <h1>Unauthorized</h1>
+    <p>The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.</p>
+    """
+    
+        mock_requests_response.return_value = RequestMockResponse(401, mocked_return_value.encode())
+    
+        module = carbonblack_connector
+        query_expression = self._create_query_list("process_name:cmd.exe")[0]
+>       results_response = module.Connector(connection, config).create_results_connection(query_expression, 0, 10)
+
+tests/stix_transmission/test_carbonblack.py:233: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:71: in create_results_connection
+    raise e
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:63: in create_results_connection
+    response = self.api_client.run_search(query, dialect, start=offset, rows=length)
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_api_client.py:40: in run_search
+    return self.client.call_api(endpoint, 'GET', headers, urldata=data)
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:89: in call_api
+    raise e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <stix_shifter.stix_transmission.src.modules.utils.RestApiClient.RestApiClient object at 0x10a564f28>
+endpoint = 'api/v1/process?q=process_name%3Acmd.exe&start=0&rows=10&sort=start+asc'
+method = 'GET', headers = {}, params = [], data = None
+urldata = 'q=process_name%3Acmd.exe&start=0&rows=10&sort=start+asc'
+
+    def call_api(self, endpoint, method, headers=None, params=[], data=None, urldata=None):
+    
+        self.cert_file_name = None
+        try:
+            if self.cert is not None and self.cert_verify:
+                # put key/cert pair into a file to read it later
+                self.cert_file_name = "cert.pem"
+                with open(self.cert_file_name, 'w') as f:
+                    try:
+                        f.write(self.cert)
+                    except IOError:
+                        print('Failed to setup certificate')
+    
+            url = None
+            actual_headers = self.headers.copy()
+            if headers is not None:
+                for header_key in headers:
+                    actual_headers[header_key] = headers[header_key]
+    
+            if urldata is not None:
+                urldata = urllib.parse.urlencode(urldata)
+                if '?' in endpoint:
+                    endpoint += '&'
+                else:
+                    endpoint += '?'
+                endpoint += urldata
+    
+            if self.url_modifier_function is not None:
+                url = self.url_modifier_function(self.server_ip, endpoint, actual_headers)
+            else:
+                url = 'https://' + self.server_ip + '/' + endpoint
+            try:
+                call = getattr(requests, method.lower())
+    #Subroto inserted
+                logging.info("--------------- RestApiclient: Requested Print --------------")
+                logging.debug("method: " + str(method) + ", url: " + str(url))
+                logging.debug("headers: " + str(actual_headers))
+                logging.debug("cert_file_name: " + str(self.cert_file_name))
+                logging.debug("cert_verify " + str(self.cert_verify))
+                logging.debug(self.cert)
+                logging.info("--- Just before the api-call ------")
+                logging.debug("Data: " + str(data))
+                logging.debug("Params: " + str(params))
+                #response = call(url, headers=actual_headers, cert=self.cert_file_name, data=data, verify=self.cert_verify)
+                # subroto added these code for understanding the flow
+                if params is not None and data is not None:
+                    logging.info("\n params & data both present: calling with both")
+                elif params is not None:
+                    logging.info("\n params is present: calling with params")
+                elif data is not None:
+                    logging.info("\n data is present: calling with data")
+                response = call(url, headers=actual_headers, cert=self.cert_file_name, params=params, data=data, verify=self.cert_verify)
+    
+                logging.info("----------- RESPONSE RECEIVED --------")
+                logging.debug(response)
+                logging.info("Status Code: " + str(response.status_code))
+>               logging.debug("Header: " + str(response.headers) + "\n")
+E               AttributeError: 'RequestMockResponse' object has no attribute 'headers'
+
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:80: AttributeError
+----------------------------- Captured stdout call -----------------------------
+exception occured during requesting url: 'RequestMockResponse' object has no attribute 'headers'
+----------------------------- Captured stderr call -----------------------------
+INFO:root:--------------- RestApiclient: Requested Print --------------
+DEBUG:root:method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Acmd.exe&start=0&rows=10&sort=start+asc
+DEBUG:root:headers: {'X-Auth-Token': 'bla'}
+DEBUG:root:cert_file_name: None
+DEBUG:root:cert_verify True
+DEBUG:root:None
+INFO:root:--- Just before the api-call ------
+DEBUG:root:Data: None
+DEBUG:root:Params: []
+INFO:root:
+ params is present: calling with params
+INFO:root:----------- RESPONSE RECEIVED --------
+DEBUG:root:<tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a15ad30>
+INFO:root:Status Code: 401
+------------------------------ Captured log call -------------------------------
+RestApiClient.py            58 INFO     --------------- RestApiclient: Requested Print --------------
+RestApiClient.py            59 DEBUG    method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Acmd.exe&start=0&rows=10&sort=start+asc
+RestApiClient.py            60 DEBUG    headers: {'X-Auth-Token': 'bla'}
+RestApiClient.py            61 DEBUG    cert_file_name: None
+RestApiClient.py            62 DEBUG    cert_verify True
+RestApiClient.py            63 DEBUG    None
+RestApiClient.py            64 INFO     --- Just before the api-call ------
+RestApiClient.py            65 DEBUG    Data: None
+RestApiClient.py            66 DEBUG    Params: []
+RestApiClient.py            72 INFO     
+ params is present: calling with params
+RestApiClient.py            77 INFO     ----------- RESPONSE RECEIVED --------
+RestApiClient.py            78 DEBUG    <tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a15ad30>
+RestApiClient.py            79 INFO     Status Code: 401
+_____ TestCarbonBlackConnection.test_binary_bad_parameter_search_response ______
+
+self = <tests.stix_transmission.test_carbonblack.TestCarbonBlackConnection testMethod=test_binary_bad_parameter_search_response>
+mock_requests_response = <function get at 0x10a5a6378>
+
+    def test_binary_bad_parameter_search_response(self, mock_requests_response):
+        mocked_return_value = "Unhandled exception. Check logs for details."
+    
+        mock_requests_response.return_value = RequestMockResponse(500, mocked_return_value.encode())
+    
+        module = carbonblack_connector
+        query_expression = self._create_query_list("process_name:cmd.exe")[0]
+>       results_response = module.Connector(connection, config).create_results_connection(query_expression, 0, 10)
+
+tests/stix_transmission/test_carbonblack.py:250: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:71: in create_results_connection
+    raise e
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:63: in create_results_connection
+    response = self.api_client.run_search(query, dialect, start=offset, rows=length)
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_api_client.py:40: in run_search
+    return self.client.call_api(endpoint, 'GET', headers, urldata=data)
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:89: in call_api
+    raise e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <stix_shifter.stix_transmission.src.modules.utils.RestApiClient.RestApiClient object at 0x10a587908>
+endpoint = 'api/v1/process?q=process_name%3Acmd.exe&start=0&rows=10&sort=start+asc'
+method = 'GET', headers = {}, params = [], data = None
+urldata = 'q=process_name%3Acmd.exe&start=0&rows=10&sort=start+asc'
+
+    def call_api(self, endpoint, method, headers=None, params=[], data=None, urldata=None):
+    
+        self.cert_file_name = None
+        try:
+            if self.cert is not None and self.cert_verify:
+                # put key/cert pair into a file to read it later
+                self.cert_file_name = "cert.pem"
+                with open(self.cert_file_name, 'w') as f:
+                    try:
+                        f.write(self.cert)
+                    except IOError:
+                        print('Failed to setup certificate')
+    
+            url = None
+            actual_headers = self.headers.copy()
+            if headers is not None:
+                for header_key in headers:
+                    actual_headers[header_key] = headers[header_key]
+    
+            if urldata is not None:
+                urldata = urllib.parse.urlencode(urldata)
+                if '?' in endpoint:
+                    endpoint += '&'
+                else:
+                    endpoint += '?'
+                endpoint += urldata
+    
+            if self.url_modifier_function is not None:
+                url = self.url_modifier_function(self.server_ip, endpoint, actual_headers)
+            else:
+                url = 'https://' + self.server_ip + '/' + endpoint
+            try:
+                call = getattr(requests, method.lower())
+    #Subroto inserted
+                logging.info("--------------- RestApiclient: Requested Print --------------")
+                logging.debug("method: " + str(method) + ", url: " + str(url))
+                logging.debug("headers: " + str(actual_headers))
+                logging.debug("cert_file_name: " + str(self.cert_file_name))
+                logging.debug("cert_verify " + str(self.cert_verify))
+                logging.debug(self.cert)
+                logging.info("--- Just before the api-call ------")
+                logging.debug("Data: " + str(data))
+                logging.debug("Params: " + str(params))
+                #response = call(url, headers=actual_headers, cert=self.cert_file_name, data=data, verify=self.cert_verify)
+                # subroto added these code for understanding the flow
+                if params is not None and data is not None:
+                    logging.info("\n params & data both present: calling with both")
+                elif params is not None:
+                    logging.info("\n params is present: calling with params")
+                elif data is not None:
+                    logging.info("\n data is present: calling with data")
+                response = call(url, headers=actual_headers, cert=self.cert_file_name, params=params, data=data, verify=self.cert_verify)
+    
+                logging.info("----------- RESPONSE RECEIVED --------")
+                logging.debug(response)
+                logging.info("Status Code: " + str(response.status_code))
+>               logging.debug("Header: " + str(response.headers) + "\n")
+E               AttributeError: 'RequestMockResponse' object has no attribute 'headers'
+
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:80: AttributeError
+----------------------------- Captured stdout call -----------------------------
+exception occured during requesting url: 'RequestMockResponse' object has no attribute 'headers'
+----------------------------- Captured stderr call -----------------------------
+INFO:root:--------------- RestApiclient: Requested Print --------------
+DEBUG:root:method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Acmd.exe&start=0&rows=10&sort=start+asc
+DEBUG:root:headers: {'X-Auth-Token': 'bla'}
+DEBUG:root:cert_file_name: None
+DEBUG:root:cert_verify True
+DEBUG:root:None
+INFO:root:--- Just before the api-call ------
+DEBUG:root:Data: None
+DEBUG:root:Params: []
+INFO:root:
+ params is present: calling with params
+INFO:root:----------- RESPONSE RECEIVED --------
+DEBUG:root:<tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a15ce48>
+INFO:root:Status Code: 500
+------------------------------ Captured log call -------------------------------
+RestApiClient.py            58 INFO     --------------- RestApiclient: Requested Print --------------
+RestApiClient.py            59 DEBUG    method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Acmd.exe&start=0&rows=10&sort=start+asc
+RestApiClient.py            60 DEBUG    headers: {'X-Auth-Token': 'bla'}
+RestApiClient.py            61 DEBUG    cert_file_name: None
+RestApiClient.py            62 DEBUG    cert_verify True
+RestApiClient.py            63 DEBUG    None
+RestApiClient.py            64 INFO     --- Just before the api-call ------
+RestApiClient.py            65 DEBUG    Data: None
+RestApiClient.py            66 DEBUG    Params: []
+RestApiClient.py            72 INFO     
+ params is present: calling with params
+RestApiClient.py            77 INFO     ----------- RESPONSE RECEIVED --------
+RestApiClient.py            78 DEBUG    <tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a15ce48>
+RestApiClient.py            79 INFO     Status Code: 500
+______________ TestCarbonBlackConnection.test_no_results_response ______________
+
+self = <tests.stix_transmission.test_carbonblack.TestCarbonBlackConnection testMethod=test_no_results_response>
+mock_requests_response = <function get at 0x10a577d90>
+
+    def test_no_results_response(self, mock_requests_response):
+        mocked_return_value = """
+    {"terms": ["process_name:notepad.exe"],
+     "results": [],
+     "elapsed": 0.01921701431274414,
+     "comprehensive_search": true,
+     "all_segments": true,
+     "total_results": 0,
+     "highlights": [],
+     "facets": {},
+     "tagged_pids": {"00000036-0000-0a02-01d4-97e70c22b346-0167c881d4b3": [{"name": "Default Investigation", "id": 1}, {"name": "Default Investigation", "id": 1}]},
+     "start": 0,
+     "incomplete_results": false,
+     "filtered": {}
+    }
+    """
+    
+        mock_requests_response.return_value = RequestMockResponse(200, mocked_return_value.encode())
+    
+        module = carbonblack_connector
+    
+        query_expression = self._create_query_list("process_name:notepad.exe")[0]
+>       results_response = module.Connector(connection, config).create_results_connection(query_expression, 0, 10)
+
+tests/stix_transmission/test_carbonblack.py:133: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:71: in create_results_connection
+    raise e
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:63: in create_results_connection
+    response = self.api_client.run_search(query, dialect, start=offset, rows=length)
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_api_client.py:40: in run_search
+    return self.client.call_api(endpoint, 'GET', headers, urldata=data)
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:89: in call_api
+    raise e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <stix_shifter.stix_transmission.src.modules.utils.RestApiClient.RestApiClient object at 0x10a564630>
+endpoint = 'api/v1/process?q=process_name%3Anotepad.exe&start=0&rows=10&sort=start+asc'
+method = 'GET', headers = {}, params = [], data = None
+urldata = 'q=process_name%3Anotepad.exe&start=0&rows=10&sort=start+asc'
+
+    def call_api(self, endpoint, method, headers=None, params=[], data=None, urldata=None):
+    
+        self.cert_file_name = None
+        try:
+            if self.cert is not None and self.cert_verify:
+                # put key/cert pair into a file to read it later
+                self.cert_file_name = "cert.pem"
+                with open(self.cert_file_name, 'w') as f:
+                    try:
+                        f.write(self.cert)
+                    except IOError:
+                        print('Failed to setup certificate')
+    
+            url = None
+            actual_headers = self.headers.copy()
+            if headers is not None:
+                for header_key in headers:
+                    actual_headers[header_key] = headers[header_key]
+    
+            if urldata is not None:
+                urldata = urllib.parse.urlencode(urldata)
+                if '?' in endpoint:
+                    endpoint += '&'
+                else:
+                    endpoint += '?'
+                endpoint += urldata
+    
+            if self.url_modifier_function is not None:
+                url = self.url_modifier_function(self.server_ip, endpoint, actual_headers)
+            else:
+                url = 'https://' + self.server_ip + '/' + endpoint
+            try:
+                call = getattr(requests, method.lower())
+    #Subroto inserted
+                logging.info("--------------- RestApiclient: Requested Print --------------")
+                logging.debug("method: " + str(method) + ", url: " + str(url))
+                logging.debug("headers: " + str(actual_headers))
+                logging.debug("cert_file_name: " + str(self.cert_file_name))
+                logging.debug("cert_verify " + str(self.cert_verify))
+                logging.debug(self.cert)
+                logging.info("--- Just before the api-call ------")
+                logging.debug("Data: " + str(data))
+                logging.debug("Params: " + str(params))
+                #response = call(url, headers=actual_headers, cert=self.cert_file_name, data=data, verify=self.cert_verify)
+                # subroto added these code for understanding the flow
+                if params is not None and data is not None:
+                    logging.info("\n params & data both present: calling with both")
+                elif params is not None:
+                    logging.info("\n params is present: calling with params")
+                elif data is not None:
+                    logging.info("\n data is present: calling with data")
+                response = call(url, headers=actual_headers, cert=self.cert_file_name, params=params, data=data, verify=self.cert_verify)
+    
+                logging.info("----------- RESPONSE RECEIVED --------")
+                logging.debug(response)
+                logging.info("Status Code: " + str(response.status_code))
+>               logging.debug("Header: " + str(response.headers) + "\n")
+E               AttributeError: 'RequestMockResponse' object has no attribute 'headers'
+
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:80: AttributeError
+----------------------------- Captured stdout call -----------------------------
+exception occured during requesting url: 'RequestMockResponse' object has no attribute 'headers'
+----------------------------- Captured stderr call -----------------------------
+INFO:root:--------------- RestApiclient: Requested Print --------------
+DEBUG:root:method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Anotepad.exe&start=0&rows=10&sort=start+asc
+DEBUG:root:headers: {'X-Auth-Token': 'bla'}
+DEBUG:root:cert_file_name: None
+DEBUG:root:cert_verify True
+DEBUG:root:None
+INFO:root:--- Just before the api-call ------
+DEBUG:root:Data: None
+DEBUG:root:Params: []
+INFO:root:
+ params is present: calling with params
+INFO:root:----------- RESPONSE RECEIVED --------
+DEBUG:root:<tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a154c88>
+INFO:root:Status Code: 200
+------------------------------ Captured log call -------------------------------
+RestApiClient.py            58 INFO     --------------- RestApiclient: Requested Print --------------
+RestApiClient.py            59 DEBUG    method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Anotepad.exe&start=0&rows=10&sort=start+asc
+RestApiClient.py            60 DEBUG    headers: {'X-Auth-Token': 'bla'}
+RestApiClient.py            61 DEBUG    cert_file_name: None
+RestApiClient.py            62 DEBUG    cert_verify True
+RestApiClient.py            63 DEBUG    None
+RestApiClient.py            64 INFO     --- Just before the api-call ------
+RestApiClient.py            65 DEBUG    Data: None
+RestApiClient.py            66 DEBUG    Params: []
+RestApiClient.py            72 INFO     
+ params is present: calling with params
+RestApiClient.py            77 INFO     ----------- RESPONSE RECEIVED --------
+RestApiClient.py            78 DEBUG    <tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a154c88>
+RestApiClient.py            79 INFO     Status Code: 200
+_____________ TestCarbonBlackConnection.test_one_results_response ______________
+
+self = <tests.stix_transmission.test_carbonblack.TestCarbonBlackConnection testMethod=test_one_results_response>
+mock_requests_response = <function get at 0x10a5771e0>
+
+    def test_one_results_response(self, mock_requests_response):
+        mocked_return_value = """
+    {
+      "terms": [
+        "process_name:cmd.exe",
+        "start:[2019-01-22T00:00:00 TO *]"
+      ],
+      "results": [
+        {
+          "process_md5": "5746bd7e255dd6a8afa06f7c42c1ba41",
+          "sensor_id": 49,
+          "filtering_known_dlls": true,
+          "modload_count": 3,
+          "parent_unique_id": "00000031-0000-09cc-01d4-b1e61979dd7c-000000000001",
+          "emet_count": 0,
+          "alliance_score_srstrust": -100,
+          "cmdline": "C:\\\\Windows\\\\system32\\\\cmd.exe /c tasklist",
+          "alliance_updated_srstrust": "2018-04-05T16:04:34Z",
+          "filemod_count": 0,
+          "id": "00000031-0000-0768-01d4-b1e6197c3edd",
+          "parent_name": "cmd.exe",
+          "parent_md5": "000000000000000000000000000000",
+          "group": "lab1",
+          "parent_id": "00000031-0000-09cc-01d4-b1e61979dd7c",
+          "hostname": "lab1-host1",
+          "last_update": "2019-01-22T00:04:52.937Z",
+          "start": "2019-01-22T00:04:52.875Z",
+          "alliance_link_srstrust": "https://example.com",
+          "comms_ip": 212262914,
+          "regmod_count": 0,
+          "interface_ip": 183439304,
+          "process_pid": 1896,
+          "username": "SYSTEM",
+          "terminated": true,
+          "alliance_data_srstrust": [
+            "5746bd7e255dd6a8afa06f7c42c1ba41"
+          ],
+          "process_name": "cmd.exe",
+          "emet_config": "",
+          "last_server_update": "2019-01-22T00:07:07.064Z",
+          "path": "c:\\\\windows\\\\system32\\\\cmd.exe",
+          "netconn_count": 0,
+          "parent_pid": 2508,
+          "crossproc_count": 2,
+          "segment_id": 1548115627056,
+          "host_type": "workstation",
+          "processblock_count": 0,
+          "os_type": "windows",
+          "childproc_count": 4,
+          "unique_id": "00080031-0000-0748-01d4-b1e61c7c3edd-016872e1cb30"
+        }
+      ],
+    
+      "elapsed": 0.05147600173950195,
+      "comprehensive_search": true,
+      "all_segments": true,
+      "total_results": 1,
+      "highlights": [],
+      "facets": {},
+      "tagged_pids": {},
+      "start": 0,
+      "incomplete_results": false,
+      "filtered": {}
+    }
+    """
+    
+        mock_requests_response.return_value = RequestMockResponse(200, mocked_return_value.encode())
+    
+        module = carbonblack_connector
+    
+        query_expression = self._create_query_list("process_name:cmd.exe start:[2019-01-22 TO *]")[0]
+>       results_response = module.Connector(connection, config).create_results_connection(query_expression, 0, 10)
+
+tests/stix_transmission/test_carbonblack.py:212: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:71: in create_results_connection
+    raise e
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:63: in create_results_connection
+    response = self.api_client.run_search(query, dialect, start=offset, rows=length)
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_api_client.py:40: in run_search
+    return self.client.call_api(endpoint, 'GET', headers, urldata=data)
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:89: in call_api
+    raise e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <stix_shifter.stix_transmission.src.modules.utils.RestApiClient.RestApiClient object at 0x10a56b320>
+endpoint = 'api/v1/process?q=process_name%3Acmd.exe+start%3A%5B2019-01-22+TO+%2A%5D&start=0&rows=10&sort=start+asc'
+method = 'GET', headers = {}, params = [], data = None
+urldata = 'q=process_name%3Acmd.exe+start%3A%5B2019-01-22+TO+%2A%5D&start=0&rows=10&sort=start+asc'
+
+    def call_api(self, endpoint, method, headers=None, params=[], data=None, urldata=None):
+    
+        self.cert_file_name = None
+        try:
+            if self.cert is not None and self.cert_verify:
+                # put key/cert pair into a file to read it later
+                self.cert_file_name = "cert.pem"
+                with open(self.cert_file_name, 'w') as f:
+                    try:
+                        f.write(self.cert)
+                    except IOError:
+                        print('Failed to setup certificate')
+    
+            url = None
+            actual_headers = self.headers.copy()
+            if headers is not None:
+                for header_key in headers:
+                    actual_headers[header_key] = headers[header_key]
+    
+            if urldata is not None:
+                urldata = urllib.parse.urlencode(urldata)
+                if '?' in endpoint:
+                    endpoint += '&'
+                else:
+                    endpoint += '?'
+                endpoint += urldata
+    
+            if self.url_modifier_function is not None:
+                url = self.url_modifier_function(self.server_ip, endpoint, actual_headers)
+            else:
+                url = 'https://' + self.server_ip + '/' + endpoint
+            try:
+                call = getattr(requests, method.lower())
+    #Subroto inserted
+                logging.info("--------------- RestApiclient: Requested Print --------------")
+                logging.debug("method: " + str(method) + ", url: " + str(url))
+                logging.debug("headers: " + str(actual_headers))
+                logging.debug("cert_file_name: " + str(self.cert_file_name))
+                logging.debug("cert_verify " + str(self.cert_verify))
+                logging.debug(self.cert)
+                logging.info("--- Just before the api-call ------")
+                logging.debug("Data: " + str(data))
+                logging.debug("Params: " + str(params))
+                #response = call(url, headers=actual_headers, cert=self.cert_file_name, data=data, verify=self.cert_verify)
+                # subroto added these code for understanding the flow
+                if params is not None and data is not None:
+                    logging.info("\n params & data both present: calling with both")
+                elif params is not None:
+                    logging.info("\n params is present: calling with params")
+                elif data is not None:
+                    logging.info("\n data is present: calling with data")
+                response = call(url, headers=actual_headers, cert=self.cert_file_name, params=params, data=data, verify=self.cert_verify)
+    
+                logging.info("----------- RESPONSE RECEIVED --------")
+                logging.debug(response)
+                logging.info("Status Code: " + str(response.status_code))
+>               logging.debug("Header: " + str(response.headers) + "\n")
+E               AttributeError: 'RequestMockResponse' object has no attribute 'headers'
+
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:80: AttributeError
+----------------------------- Captured stdout call -----------------------------
+exception occured during requesting url: 'RequestMockResponse' object has no attribute 'headers'
+----------------------------- Captured stderr call -----------------------------
+INFO:root:--------------- RestApiclient: Requested Print --------------
+DEBUG:root:method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Acmd.exe+start%3A%5B2019-01-22+TO+%2A%5D&start=0&rows=10&sort=start+asc
+DEBUG:root:headers: {'X-Auth-Token': 'bla'}
+DEBUG:root:cert_file_name: None
+DEBUG:root:cert_verify True
+DEBUG:root:None
+INFO:root:--- Just before the api-call ------
+DEBUG:root:Data: None
+DEBUG:root:Params: []
+INFO:root:
+ params is present: calling with params
+INFO:root:----------- RESPONSE RECEIVED --------
+DEBUG:root:<tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x109f9d4e0>
+INFO:root:Status Code: 200
+------------------------------ Captured log call -------------------------------
+RestApiClient.py            58 INFO     --------------- RestApiclient: Requested Print --------------
+RestApiClient.py            59 DEBUG    method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Acmd.exe+start%3A%5B2019-01-22+TO+%2A%5D&start=0&rows=10&sort=start+asc
+RestApiClient.py            60 DEBUG    headers: {'X-Auth-Token': 'bla'}
+RestApiClient.py            61 DEBUG    cert_file_name: None
+RestApiClient.py            62 DEBUG    cert_verify True
+RestApiClient.py            63 DEBUG    None
+RestApiClient.py            64 INFO     --- Just before the api-call ------
+RestApiClient.py            65 DEBUG    Data: None
+RestApiClient.py            66 DEBUG    Params: []
+RestApiClient.py            72 INFO     
+ params is present: calling with params
+RestApiClient.py            77 INFO     ----------- RESPONSE RECEIVED --------
+RestApiClient.py            78 DEBUG    <tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x109f9d4e0>
+RestApiClient.py            79 INFO     Status Code: 200
+_________________ TestCarbonBlackConnection.test_ping_endpoint _________________
+
+self = <tests.stix_transmission.test_carbonblack.TestCarbonBlackConnection testMethod=test_ping_endpoint>
+mock_requests_response = <function get at 0x10a577d90>
+
+    def test_ping_endpoint(self, mock_requests_response):
+        ping_response = """ [
+      {
+        "systemvolume_total_size": "42939584512",
+        "os_environment_display_string": "Windows XP Professional Service Pack 3",
+        "sensor_uptime": "480763",
+        "physical_memory_size": "536330240",
+        "build_id": 1,
+        "uptime": "480862",
+        "event_log_flush_time": null,
+        "computer_dns_name": "j-8205a0c27a0c4",
+        "id": 1,
+        "power_state": 0,
+        "uninstalled": null,
+        "systemvolume_free_size": "40083230720",
+        "status": "Online",
+        "num_eventlog_bytes": "22717",
+        "sensor_health_message": "Healthy",
+        "build_version_string": "004.000.000.30910",
+        "computer_sid": "S-1-5-21-1715567821-507921405-682003330",
+        "next_checkin_time": "2013-10-07 07:54:36.909657-07:00",
+        "node_id": 0,
+        "cookie": 556463980,
+        "computer_name": "J-8205A0C27A0C4",
+        "license_expiration": "1990-01-01 00:00:00-08:00",
+        "network_adapters": "192.168.206.156,000c298a3613|",
+        "sensor_health_status": 100,
+        "registration_time": "2013-02-04 06:40:04.632053-08:00",
+        "restart_queued": false,
+        "notes": null,
+        "num_storefiles_bytes": "446464",
+        "os_environment_id": 1,
+        "boot_id": "8",
+        "last_checkin_time": "2013-10-07 07:54:06.919446-07:00",
+        "group_id": 1,
+        "display": true,
+        "uninstall": false,
+        "network_isolation_enabled": false,
+        "is_isolating": false
+      }
+    ] """
+    
+        mock_requests_response.return_value = RequestMockResponse(200, ping_response.encode())
+    
+        module = carbonblack_connector
+>       ping_response = module.Connector(connection, config).ping()
+
+tests/stix_transmission/test_carbonblack.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:48: in ping
+    raise e
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:41: in ping
+    response = self.api_client.ping_box()
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_api_client.py:26: in ping_box
+    return self.client.call_api(endpoint, 'GET')
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:89: in call_api
+    raise e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <stix_shifter.stix_transmission.src.modules.utils.RestApiClient.RestApiClient object at 0x10a149f98>
+endpoint = 'api/v1/sensor', method = 'GET', headers = None, params = []
+data = None, urldata = None
+
+    def call_api(self, endpoint, method, headers=None, params=[], data=None, urldata=None):
+    
+        self.cert_file_name = None
+        try:
+            if self.cert is not None and self.cert_verify:
+                # put key/cert pair into a file to read it later
+                self.cert_file_name = "cert.pem"
+                with open(self.cert_file_name, 'w') as f:
+                    try:
+                        f.write(self.cert)
+                    except IOError:
+                        print('Failed to setup certificate')
+    
+            url = None
+            actual_headers = self.headers.copy()
+            if headers is not None:
+                for header_key in headers:
+                    actual_headers[header_key] = headers[header_key]
+    
+            if urldata is not None:
+                urldata = urllib.parse.urlencode(urldata)
+                if '?' in endpoint:
+                    endpoint += '&'
+                else:
+                    endpoint += '?'
+                endpoint += urldata
+    
+            if self.url_modifier_function is not None:
+                url = self.url_modifier_function(self.server_ip, endpoint, actual_headers)
+            else:
+                url = 'https://' + self.server_ip + '/' + endpoint
+            try:
+                call = getattr(requests, method.lower())
+    #Subroto inserted
+                logging.info("--------------- RestApiclient: Requested Print --------------")
+                logging.debug("method: " + str(method) + ", url: " + str(url))
+                logging.debug("headers: " + str(actual_headers))
+                logging.debug("cert_file_name: " + str(self.cert_file_name))
+                logging.debug("cert_verify " + str(self.cert_verify))
+                logging.debug(self.cert)
+                logging.info("--- Just before the api-call ------")
+                logging.debug("Data: " + str(data))
+                logging.debug("Params: " + str(params))
+                #response = call(url, headers=actual_headers, cert=self.cert_file_name, data=data, verify=self.cert_verify)
+                # subroto added these code for understanding the flow
+                if params is not None and data is not None:
+                    logging.info("\n params & data both present: calling with both")
+                elif params is not None:
+                    logging.info("\n params is present: calling with params")
+                elif data is not None:
+                    logging.info("\n data is present: calling with data")
+                response = call(url, headers=actual_headers, cert=self.cert_file_name, params=params, data=data, verify=self.cert_verify)
+    
+                logging.info("----------- RESPONSE RECEIVED --------")
+                logging.debug(response)
+                logging.info("Status Code: " + str(response.status_code))
+>               logging.debug("Header: " + str(response.headers) + "\n")
+E               AttributeError: 'RequestMockResponse' object has no attribute 'headers'
+
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:80: AttributeError
+----------------------------- Captured stdout call -----------------------------
+exception occured during requesting url: 'RequestMockResponse' object has no attribute 'headers'
+----------------------------- Captured stderr call -----------------------------
+INFO:root:--------------- RestApiclient: Requested Print --------------
+DEBUG:root:method: GET, url: https://hostbla:8080/api/v1/sensor
+DEBUG:root:headers: {'X-Auth-Token': 'bla'}
+DEBUG:root:cert_file_name: None
+DEBUG:root:cert_verify True
+DEBUG:root:None
+INFO:root:--- Just before the api-call ------
+DEBUG:root:Data: None
+DEBUG:root:Params: []
+INFO:root:
+ params is present: calling with params
+INFO:root:----------- RESPONSE RECEIVED --------
+DEBUG:root:<tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a564390>
+INFO:root:Status Code: 200
+------------------------------ Captured log call -------------------------------
+RestApiClient.py            58 INFO     --------------- RestApiclient: Requested Print --------------
+RestApiClient.py            59 DEBUG    method: GET, url: https://hostbla:8080/api/v1/sensor
+RestApiClient.py            60 DEBUG    headers: {'X-Auth-Token': 'bla'}
+RestApiClient.py            61 DEBUG    cert_file_name: None
+RestApiClient.py            62 DEBUG    cert_verify True
+RestApiClient.py            63 DEBUG    None
+RestApiClient.py            64 INFO     --- Just before the api-call ------
+RestApiClient.py            65 DEBUG    Data: None
+RestApiClient.py            66 DEBUG    Params: []
+RestApiClient.py            72 INFO     
+ params is present: calling with params
+RestApiClient.py            77 INFO     ----------- RESPONSE RECEIVED --------
+RestApiClient.py            78 DEBUG    <tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a564390>
+RestApiClient.py            79 INFO     Status Code: 200
+__________ TestCarbonBlackConnection.test_query_syntax_error_response __________
+
+self = <tests.stix_transmission.test_carbonblack.TestCarbonBlackConnection testMethod=test_query_syntax_error_response>
+mock_requests_response = <function get at 0x10a58e488>
+
+    def test_query_syntax_error_response(self, mock_requests_response):
+        mocked_return_value = '{"reason": "query_syntax_error"}'
+    
+        mock_requests_response.return_value = RequestMockResponse(400, mocked_return_value.encode())
+    
+        module = carbonblack_connector
+        query_expression = self._create_query_list("(process_name:cmd.exe")[0]
+>       results_response = module.Connector(connection, config).create_results_connection(query_expression, 0, 10)
+
+tests/stix_transmission/test_carbonblack.py:267: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:71: in create_results_connection
+    raise e
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:63: in create_results_connection
+    response = self.api_client.run_search(query, dialect, start=offset, rows=length)
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_api_client.py:40: in run_search
+    return self.client.call_api(endpoint, 'GET', headers, urldata=data)
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:89: in call_api
+    raise e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <stix_shifter.stix_transmission.src.modules.utils.RestApiClient.RestApiClient object at 0x10a56be10>
+endpoint = 'api/v1/process?q=%28process_name%3Acmd.exe&start=0&rows=10&sort=start+asc'
+method = 'GET', headers = {}, params = [], data = None
+urldata = 'q=%28process_name%3Acmd.exe&start=0&rows=10&sort=start+asc'
+
+    def call_api(self, endpoint, method, headers=None, params=[], data=None, urldata=None):
+    
+        self.cert_file_name = None
+        try:
+            if self.cert is not None and self.cert_verify:
+                # put key/cert pair into a file to read it later
+                self.cert_file_name = "cert.pem"
+                with open(self.cert_file_name, 'w') as f:
+                    try:
+                        f.write(self.cert)
+                    except IOError:
+                        print('Failed to setup certificate')
+    
+            url = None
+            actual_headers = self.headers.copy()
+            if headers is not None:
+                for header_key in headers:
+                    actual_headers[header_key] = headers[header_key]
+    
+            if urldata is not None:
+                urldata = urllib.parse.urlencode(urldata)
+                if '?' in endpoint:
+                    endpoint += '&'
+                else:
+                    endpoint += '?'
+                endpoint += urldata
+    
+            if self.url_modifier_function is not None:
+                url = self.url_modifier_function(self.server_ip, endpoint, actual_headers)
+            else:
+                url = 'https://' + self.server_ip + '/' + endpoint
+            try:
+                call = getattr(requests, method.lower())
+    #Subroto inserted
+                logging.info("--------------- RestApiclient: Requested Print --------------")
+                logging.debug("method: " + str(method) + ", url: " + str(url))
+                logging.debug("headers: " + str(actual_headers))
+                logging.debug("cert_file_name: " + str(self.cert_file_name))
+                logging.debug("cert_verify " + str(self.cert_verify))
+                logging.debug(self.cert)
+                logging.info("--- Just before the api-call ------")
+                logging.debug("Data: " + str(data))
+                logging.debug("Params: " + str(params))
+                #response = call(url, headers=actual_headers, cert=self.cert_file_name, data=data, verify=self.cert_verify)
+                # subroto added these code for understanding the flow
+                if params is not None and data is not None:
+                    logging.info("\n params & data both present: calling with both")
+                elif params is not None:
+                    logging.info("\n params is present: calling with params")
+                elif data is not None:
+                    logging.info("\n data is present: calling with data")
+                response = call(url, headers=actual_headers, cert=self.cert_file_name, params=params, data=data, verify=self.cert_verify)
+    
+                logging.info("----------- RESPONSE RECEIVED --------")
+                logging.debug(response)
+                logging.info("Status Code: " + str(response.status_code))
+>               logging.debug("Header: " + str(response.headers) + "\n")
+E               AttributeError: 'RequestMockResponse' object has no attribute 'headers'
+
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:80: AttributeError
+----------------------------- Captured stdout call -----------------------------
+exception occured during requesting url: 'RequestMockResponse' object has no attribute 'headers'
+----------------------------- Captured stderr call -----------------------------
+INFO:root:--------------- RestApiclient: Requested Print --------------
+DEBUG:root:method: GET, url: https://hostbla:8080/api/v1/process?q=%28process_name%3Acmd.exe&start=0&rows=10&sort=start+asc
+DEBUG:root:headers: {'X-Auth-Token': 'bla'}
+DEBUG:root:cert_file_name: None
+DEBUG:root:cert_verify True
+DEBUG:root:None
+INFO:root:--- Just before the api-call ------
+DEBUG:root:Data: None
+DEBUG:root:Params: []
+INFO:root:
+ params is present: calling with params
+INFO:root:----------- RESPONSE RECEIVED --------
+DEBUG:root:<tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x109ff8cf8>
+INFO:root:Status Code: 400
+------------------------------ Captured log call -------------------------------
+RestApiClient.py            58 INFO     --------------- RestApiclient: Requested Print --------------
+RestApiClient.py            59 DEBUG    method: GET, url: https://hostbla:8080/api/v1/process?q=%28process_name%3Acmd.exe&start=0&rows=10&sort=start+asc
+RestApiClient.py            60 DEBUG    headers: {'X-Auth-Token': 'bla'}
+RestApiClient.py            61 DEBUG    cert_file_name: None
+RestApiClient.py            62 DEBUG    cert_verify True
+RestApiClient.py            63 DEBUG    None
+RestApiClient.py            64 INFO     --- Just before the api-call ------
+RestApiClient.py            65 DEBUG    Data: None
+RestApiClient.py            66 DEBUG    Params: []
+RestApiClient.py            72 INFO     
+ params is present: calling with params
+RestApiClient.py            77 INFO     ----------- RESPONSE RECEIVED --------
+RestApiClient.py            78 DEBUG    <tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x109ff8cf8>
+RestApiClient.py            79 INFO     Status Code: 400
+____________ TestCarbonBlackConnection.test_transmit_limit_and_sort ____________
+
+self = <tests.stix_transmission.test_carbonblack.TestCarbonBlackConnection testMethod=test_transmit_limit_and_sort>
+mock_requests_response = <function get at 0x109f549d8>
+
+    def test_transmit_limit_and_sort(self, mock_requests_response):
+        mocked_return_value = '{"reason": "query_syntax_error"}'
+        request_parameter_list = []
+    
+        mock_requests_response.return_value = RequestMockResponse(200, mocked_return_value.encode())
+    
+        module = carbonblack_connector
+        query_expression = self._create_query_list("process_name:cmd.exe")[0]
+>       results_response = module.Connector(connection, config).create_results_connection(query_expression, 100, 2)
+
+tests/stix_transmission/test_carbonblack.py:285: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:71: in create_results_connection
+    raise e
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_connector.py:63: in create_results_connection
+    response = self.api_client.run_search(query, dialect, start=offset, rows=length)
+stix_shifter/stix_transmission/src/modules/carbonblack/carbonblack_api_client.py:40: in run_search
+    return self.client.call_api(endpoint, 'GET', headers, urldata=data)
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:89: in call_api
+    raise e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <stix_shifter.stix_transmission.src.modules.utils.RestApiClient.RestApiClient object at 0x108139240>
+endpoint = 'api/v1/process?q=process_name%3Acmd.exe&start=100&rows=2&sort=start+asc'
+method = 'GET', headers = {}, params = [], data = None
+urldata = 'q=process_name%3Acmd.exe&start=100&rows=2&sort=start+asc'
+
+    def call_api(self, endpoint, method, headers=None, params=[], data=None, urldata=None):
+    
+        self.cert_file_name = None
+        try:
+            if self.cert is not None and self.cert_verify:
+                # put key/cert pair into a file to read it later
+                self.cert_file_name = "cert.pem"
+                with open(self.cert_file_name, 'w') as f:
+                    try:
+                        f.write(self.cert)
+                    except IOError:
+                        print('Failed to setup certificate')
+    
+            url = None
+            actual_headers = self.headers.copy()
+            if headers is not None:
+                for header_key in headers:
+                    actual_headers[header_key] = headers[header_key]
+    
+            if urldata is not None:
+                urldata = urllib.parse.urlencode(urldata)
+                if '?' in endpoint:
+                    endpoint += '&'
+                else:
+                    endpoint += '?'
+                endpoint += urldata
+    
+            if self.url_modifier_function is not None:
+                url = self.url_modifier_function(self.server_ip, endpoint, actual_headers)
+            else:
+                url = 'https://' + self.server_ip + '/' + endpoint
+            try:
+                call = getattr(requests, method.lower())
+    #Subroto inserted
+                logging.info("--------------- RestApiclient: Requested Print --------------")
+                logging.debug("method: " + str(method) + ", url: " + str(url))
+                logging.debug("headers: " + str(actual_headers))
+                logging.debug("cert_file_name: " + str(self.cert_file_name))
+                logging.debug("cert_verify " + str(self.cert_verify))
+                logging.debug(self.cert)
+                logging.info("--- Just before the api-call ------")
+                logging.debug("Data: " + str(data))
+                logging.debug("Params: " + str(params))
+                #response = call(url, headers=actual_headers, cert=self.cert_file_name, data=data, verify=self.cert_verify)
+                # subroto added these code for understanding the flow
+                if params is not None and data is not None:
+                    logging.info("\n params & data both present: calling with both")
+                elif params is not None:
+                    logging.info("\n params is present: calling with params")
+                elif data is not None:
+                    logging.info("\n data is present: calling with data")
+                response = call(url, headers=actual_headers, cert=self.cert_file_name, params=params, data=data, verify=self.cert_verify)
+    
+                logging.info("----------- RESPONSE RECEIVED --------")
+                logging.debug(response)
+                logging.info("Status Code: " + str(response.status_code))
+>               logging.debug("Header: " + str(response.headers) + "\n")
+E               AttributeError: 'RequestMockResponse' object has no attribute 'headers'
+
+stix_shifter/stix_transmission/src/modules/utils/RestApiClient.py:80: AttributeError
+----------------------------- Captured stdout call -----------------------------
+exception occured during requesting url: 'RequestMockResponse' object has no attribute 'headers'
+----------------------------- Captured stderr call -----------------------------
+INFO:root:--------------- RestApiclient: Requested Print --------------
+DEBUG:root:method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Acmd.exe&start=100&rows=2&sort=start+asc
+DEBUG:root:headers: {'X-Auth-Token': 'bla'}
+DEBUG:root:cert_file_name: None
+DEBUG:root:cert_verify True
+DEBUG:root:None
+INFO:root:--- Just before the api-call ------
+DEBUG:root:Data: None
+DEBUG:root:Params: []
+INFO:root:
+ params is present: calling with params
+INFO:root:----------- RESPONSE RECEIVED --------
+DEBUG:root:<tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a1662e8>
+INFO:root:Status Code: 200
+------------------------------ Captured log call -------------------------------
+RestApiClient.py            58 INFO     --------------- RestApiclient: Requested Print --------------
+RestApiClient.py            59 DEBUG    method: GET, url: https://hostbla:8080/api/v1/process?q=process_name%3Acmd.exe&start=100&rows=2&sort=start+asc
+RestApiClient.py            60 DEBUG    headers: {'X-Auth-Token': 'bla'}
+RestApiClient.py            61 DEBUG    cert_file_name: None
+RestApiClient.py            62 DEBUG    cert_verify True
+RestApiClient.py            63 DEBUG    None
+RestApiClient.py            64 INFO     --- Just before the api-call ------
+RestApiClient.py            65 DEBUG    Data: None
+RestApiClient.py            66 DEBUG    Params: []
+RestApiClient.py            72 INFO     
+ params is present: calling with params
+RestApiClient.py            77 INFO     ----------- RESPONSE RECEIVED --------
+RestApiClient.py            78 DEBUG    <tests.stix_transmission.test_carbonblack.RequestMockResponse object at 0x10a1662e8>
+RestApiClient.py            79 INFO     Status Code: 200
+______________________ TestRequests.test_xforward_request ______________________
+
+self = <tests.stix_transmission.test_qradar.TestRequests testMethod=test_xforward_request>
+mock_get = <function get at 0x10a589d90>
+
+    def test_xforward_request(self, mock_get):
+        mocked_return_value = '["mock", "placeholder"]'
+        mock_get.return_value = MockResponceWrapper(200, mocked_return_value)
+    
+        connection = {
+            "proxy" : {
+                "url" : "proxy_url0:8088",
+                "auth" : "proxy_auth_data0",
+                "x_forward_proxy" : "x_forward_proxy_host1",
+                "x_forward_proxy_auth" : "x_forward_proxy_auth_data1"
+            },
+    
+            "host" : "somehost0",
+            "port" : "15004",
+            "cert" : "somecert0"
+        }
+    
+        config = {
+            "auth": {
+                "SEC": "sec0"
+            }
+        }
+    
+        transmission = stix_transmission.StixTransmission('qradar',  connection, config)
+        transmission.ping()
+    
+        mock_get.assert_called_with('x_forward_proxy_host1', cert='cert.pem', data=None, headers={'version': '8.0', 'accept': 'application/json', \
+                                    'sec': 'sec0', 'proxy': 'proxy_url0:8088', 'proxy-authorization': 'Basic proxy_auth_data0', \
+>                                   'x-forward-url': 'https://somehost0:15004/api/help/resources', 'x-forward-auth': 'x_forward_proxy_auth_data1', 'user-agent': 'UDS'}, verify=True)
+
+tests/stix_transmission/test_qradar.py:266: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/mock.py:195: in assert_called_with
+    return mock.assert_called_with(*args, **kwargs)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+_mock_self = <MagicMock name='get' spec='function' id='4426329616'>
+args = ('x_forward_proxy_host1',)
+kwargs = {'cert': 'cert.pem', 'data': None, 'headers': {'accept': 'application/json', 'proxy': 'proxy_url0:8088', 'proxy-authorization': 'Basic proxy_auth_data0', 'sec': 'sec0', ...}, 'verify': True}
+expected = ('', <BoundArguments (url='x_forward_proxy_host1', kwargs={'cert': 'cert.pem', 'data': None, 'headers': {'version': '8...st0:15004/api/help/resources', 'x-forward-auth': 'x_forward_proxy_auth_data1', 'user-agent': 'UDS'}, 'verify': True})>)
+_error_message = <function NonCallableMock.assert_called_with.<locals>._error_message at 0x10a0bb1e0>
+actual = ('', <BoundArguments (url='x_forward_proxy_host1', params=[], kwargs={'headers': {'version': '8.0', 'accept': 'applica...forward-auth': 'x_forward_proxy_auth_data1', 'user-agent': 'UDS'}, 'cert': 'cert.pem', 'data': None, 'verify': True})>)
+cause = None
+
+    def assert_called_with(_mock_self, *args, **kwargs):
+        """assert that the mock was called with the specified arguments.
+    
+            Raises an AssertionError if the args and keyword args passed in are
+            different to the last call to the mock."""
+        self = _mock_self
+        if self.call_args is None:
+            expected = self._format_mock_call_signature(args, kwargs)
+            raise AssertionError('Expected call: %s\nNot called' % (expected,))
+    
+        def _error_message():
+            msg = self._format_mock_failure_message(args, kwargs)
+            return msg
+        expected = self._call_matcher((args, kwargs))
+        actual = self._call_matcher(self.call_args)
+        if expected != actual:
+            cause = expected if isinstance(expected, Exception) else None
+>           raise AssertionError(_error_message()) from cause
+E           AssertionError: Expected call: get('x_forward_proxy_host1', cert='cert.pem', data=None, headers={'version': '8.0', 'accept': 'application/json', 'sec': 'sec0', 'proxy': 'proxy_url0:8088', 'proxy-authorization': 'Basic proxy_auth_data0', 'x-forward-url': 'https://somehost0:15004/api/help/resources', 'x-forward-auth': 'x_forward_proxy_auth_data1', 'user-agent': 'UDS'}, verify=True)
+E           Actual call: get('x_forward_proxy_host1', cert='cert.pem', data=None, headers={'version': '8.0', 'accept': 'application/json', 'sec': 'sec0', 'proxy': 'proxy_url0:8088', 'proxy-authorization': 'Basic proxy_auth_data0', 'x-forward-url': 'https://somehost0:15004/api/help/resources', 'x-forward-auth': 'x_forward_proxy_auth_data1', 'user-agent': 'UDS'}, params=[], verify=True)
+
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/mock.py:814: AssertionError
+----------------------------- Captured stdout call -----------------------------
+exception occured during requesting url: 'MockResponceWrapper' object has no attribute 'headers'
+error occurred: 'MockResponceWrapper' object has no attribute 'headers'
+----------------------------- Captured stderr call -----------------------------
+INFO:root:--------------- RestApiclient: Requested Print --------------
+DEBUG:root:method: GET, url: x_forward_proxy_host1
+DEBUG:root:headers: {'version': '8.0', 'accept': 'application/json', 'sec': 'sec0', 'proxy': 'proxy_url0:8088', 'proxy-authorization': 'Basic proxy_auth_data0', 'x-forward-url': 'https://somehost0:15004/api/help/resources', 'x-forward-auth': 'x_forward_proxy_auth_data1', 'user-agent': 'UDS'}
+DEBUG:root:cert_file_name: cert.pem
+DEBUG:root:cert_verify True
+DEBUG:root:somecert0
+INFO:root:--- Just before the api-call ------
+DEBUG:root:Data: None
+DEBUG:root:Params: []
+INFO:root:
+ params is present: calling with params
+INFO:root:----------- RESPONSE RECEIVED --------
+DEBUG:root:<tests.stix_transmission.test_qradar.MockResponceWrapper object at 0x107d46400>
+INFO:root:Status Code: 200
+------------------------------ Captured log call -------------------------------
+RestApiClient.py            58 INFO     --------------- RestApiclient: Requested Print --------------
+RestApiClient.py            59 DEBUG    method: GET, url: x_forward_proxy_host1
+RestApiClient.py            60 DEBUG    headers: {'version': '8.0', 'accept': 'application/json', 'sec': 'sec0', 'proxy': 'proxy_url0:8088', 'proxy-authorization': 'Basic proxy_auth_data0', 'x-forward-url': 'https://somehost0:15004/api/help/resources', 'x-forward-auth': 'x_forward_proxy_auth_data1', 'user-agent': 'UDS'}
+RestApiClient.py            61 DEBUG    cert_file_name: cert.pem
+RestApiClient.py            62 DEBUG    cert_verify True
+RestApiClient.py            63 DEBUG    somecert0
+RestApiClient.py            64 INFO     --- Just before the api-call ------
+RestApiClient.py            65 DEBUG    Data: None
+RestApiClient.py            66 DEBUG    Params: []
+RestApiClient.py            72 INFO     
+ params is present: calling with params
+RestApiClient.py            77 INFO     ----------- RESPONSE RECEIVED --------
+RestApiClient.py            78 DEBUG    <tests.stix_transmission.test_qradar.MockResponceWrapper object at 0x107d46400>
+RestApiClient.py            79 INFO     Status Code: 200
+================ 38 failed, 314 passed in -22758124.72 seconds =================

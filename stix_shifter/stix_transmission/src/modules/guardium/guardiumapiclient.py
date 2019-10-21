@@ -166,7 +166,8 @@ class APIClient():
         endpoint = "oauth/token"
         tNow = datetime.datetime.now()
         response = self.client.call_api(endpoint, "POST", params=data, data=None)
-        jResp = json.loads(response.read())
+        #jResp = json.loads(response.read()) -- Changed
+        jResp = json.loads(str(response.read(), 'utf-8'))
 
         if (response.code != 200):
             logging.info("Authorization Token NOT Received. Response code: " + str(response.code))

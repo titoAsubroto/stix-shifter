@@ -56,12 +56,10 @@ class RestApiClient:
                 call = getattr(requests, method.lower())
 #Subroto inserted
                 logging.info("--------------- RestApiclient: Requested Print --------------")
-                logging.debug(method)
-                logging.debug(url)
-                logging.debug(actual_headers)
-
-                logging.debug(self.cert_file_name)
-                logging.debug(self.cert_verify)
+                logging.debug("method: " + str(method) + ", url: " + str(url))
+                logging.debug("headers: " + str(actual_headers))
+                logging.debug("cert_file_name: " + str(self.cert_file_name))
+                logging.debug("cert_verify " + str(self.cert_verify))
                 logging.debug(self.cert)
                 logging.info("--- Just before the api-call ------")
                 logging.debug("Data: " + str(data))
@@ -77,7 +75,7 @@ class RestApiClient:
                 response = call(url, headers=actual_headers, cert=self.cert_file_name, params=params, data=data, verify=self.cert_verify)
                 
                 logging.info("----------- RESPONSE RECEIVED --------")
-                logging.info(response)
+                logging.debug(response)
                 logging.info("Status Code: " + str(response.status_code))
                 logging.debug("Header: " + str(response.headers) + "\n")
                 logging.debug("Content: \n" + str(response.content))
@@ -109,8 +107,8 @@ class ResponseWrapper:
         self.response = response
 
     def read(self):
-        return str(self.response.content, 'utf-8')
-        #return self.response.content
+ #       return str(self.response.content, 'utf-8')  -- Guardium would like get string output
+        return self.response.content
     
     @property
     def bytes(self):

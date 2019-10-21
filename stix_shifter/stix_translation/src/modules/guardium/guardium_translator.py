@@ -14,4 +14,3 @@ class Translator(BaseTranslator):
         self.mapping_filepath = filepath
         self.result_translator = JSONToStix(filepath)
         self.query_translator = StixToQuery()
- #       print("print----- Translator assigned")

@@ -212,7 +212,6 @@ class QueryStringPatternTranslator:
             logging.info(dataCategory)
             if(dataCategory is not None):
                 if dataCategory not in self.REPORT_DEF:
-                    #print("Map for Data Category: '" + dataCategory + "' is missing; or a wrong data category value.")
                     logging.info("Map for Data Category: '" + dataCategory + "' is missing; or a wrong data category value.")
                     logging.debug(json.dumps(self.REPORT_PARAMS_MAP, indent=4))
                     reportDefs = None
@@ -223,10 +222,10 @@ class QueryStringPatternTranslator:
                 logging.info("'dataCategory' is not supplied. It is NONE. Generating the query from report parameter map.")
                 reportDefs = self.generate_ReportDefs()
             # substitue Params
-            #print(reportDefs)
+            logging.debug("reportDef output of Report Definition: " + str(reportDefs))
             reports_in_query = self.substitute_ParamsPassed(reportDefs,reports_in_query)
             logging.info("-------- Reports In Query for Index: "+ str(repParamIndex) + "-----\n")
-            #logging.debug(reports_in_query)
+            logging.debug(reports_in_query)
             #reportHeader.append(reportDefs)
         logging.info("-------- End Get Report Params ------\n")
         return reports_in_query
@@ -274,9 +273,7 @@ class QueryStringPatternTranslator:
         logging.debug(self.REPORT_DEF)
         for key in reportSet:
             dataCategory, report = key.split(":")
-            #print(key)
-            #print(dataCategory)
-            #print(report)
+            logging.debug("data Category: " + str(dataCategory))
             if dataCategory not in self.REPORT_DEF:
                 logging.info("Error in parameter mapping file (data category): " + str(dataCategory) + " not there. Ingored.")
             else:
@@ -474,8 +471,7 @@ class QueryStringPatternTranslator:
 
 
 def translate_pattern(pattern: Pattern, data_model_mapping, options):
-    #print("\nTranslate Pattern: ")
-    #print(pattern)
+    logging.debug("\nTranslate Pattern: " + str(pattern))
     logging.debug("Entered translate_pattern------\nTranslate Pattern: " + str(pattern))
     logging.debug("Data model mapping: " + str(data_model_mapping))
     # Converting query object to datasource query

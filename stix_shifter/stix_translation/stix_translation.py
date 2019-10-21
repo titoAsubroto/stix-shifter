@@ -96,7 +96,7 @@ class StixTranslation:
                         # Remove unmapped STIX attributes from antlr parsing
                         antlr_parsing = strip_unmapped_attributes(antlr_parsing, data_model_mapper)
                     # Converting STIX pattern to datasource query
-                    logging.debug("Calling Transform query: " + str(data))
+                    logging.debug("Calling transform query: " + str(data))
                     queries = interface.transform_query(data, antlr_parsing, data_model_mapper, options)
                     logging.debug("Out from transform query: " + str(queries))
                     return {'queries': queries}
@@ -115,15 +115,14 @@ class StixTranslation:
                 # Converting data from the datasource to STIX objects
                 try:
                     logging.info("print----- Translate Results 1")
-                    logging.info(data)
-                    #logging.info(data_source)
+                    logging.debug("data fed to translate_results: " + str(data))
+                    logging.debug("data_source fed to translate_results: " + str(data_source))
                     return interface.translate_results(data_source, data, options)
                 except Exception:
                     raise TranslationResultException()
             else:
                 raise NotImplementedError('wrong parameter: ' + translate_type)
         except Exception as ex:
-            print('Caught exception: ' + str(ex) + " " + str(type(ex)))
             response = dict()
             ErrorResponder.fill_error(response, message_struct={'exception': ex})
             return response
