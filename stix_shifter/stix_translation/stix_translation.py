@@ -11,8 +11,12 @@ from stix_shifter.stix_translation.src.utils.unmapped_attribute_stripper import 
 import sys
 import logging
 #TRANSLATION_MODULES = ['qradar', 'dummy', 'car', 'cim', 'splunk', 'elastic', 'bigfix', 'csa', 'csa:at', 'csa:nf', 'aws_security_hub', 'carbonblack', 'elastic_ecs', 'proxy', 'stix_bundle']
+#RANSLATION_MODULES = ['qradar', 'dummy', 'car', 'cim', 'splunk', 'elastic', 'guardium', 
+#'bigfix', 'csa', 'csa:at', 'csa:nf', 'aws_security_hub', 'carbonblack']
 
-TRANSLATION_MODULES = ['qradar', 'dummy', 'car', 'cim', 'splunk', 'elastic', 'guardium', 'bigfix', 'csa', 'csa:at', 'csa:nf', 'aws_security_hub', 'carbonblack']
+TRANSLATION_MODULES = ['qradar', 'dummy', 'car', 'cim', 'splunk', 'elastic', 'guardium', 'bigfix', 'csa',
+                       'csa:at', 'csa:nf', 'aws_security_hub', 'carbonblack', 'elastic_ecs', 'proxy', 'stix_bundle']
+
 RESULTS = 'results'
 QUERY = 'query'
 PARSE = 'parse'
